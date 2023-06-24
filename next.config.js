@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: ["cdn.pixabay.com"],
+    domains: ["cdn.pixabay.com", "img.freepik.com"],
   },
 };
 

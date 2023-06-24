@@ -18,6 +18,7 @@ export default function Home() {
       <Separator />
       <IntrestingFacts />
       <Separator withIcon={false} />
+      <BarJoke />
     </>
   );
 }
