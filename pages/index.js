@@ -1,4 +1,5 @@
 import Menu from "@/components/Menu.js";
+import Footer from "@/components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import BarJoke from "@/components/BarJoke.js";
 import Address from "@/components/Address.js";
@@ -19,6 +20,8 @@ export default function Home() {
       <IntrestingFacts />
       <Separator withIcon={false} />
       <BarJoke />
+      <Separator withIcon={false} />
+      <Footer />
     </>
   );
 }
