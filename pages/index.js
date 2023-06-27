@@ -1,5 +1,5 @@
 import Menu from "@/components/Menu.js";
-import Footer from "@/components/Footer.js";
+import PageLayout from "@/components/PageLayout.js";
 import Navbar from "../components/Navbar.js";
 import BarJoke from "@/components/BarJoke.js";
 import Address from "@/components/Address.js";
@@ -10,18 +10,20 @@ import IntrestingFacts from "@/components/IntrestingFacts.js";
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <Services />
-      <Separator />
-      <Menu />
-      <Separator />
-      <Address />
-      <Separator />
-      <IntrestingFacts />
-      <Separator withIcon={false} />
-      <BarJoke />
-      <Separator withIcon={false} />
-      <Footer />
+      <PageLayout>
+        {/* <Navbar /> */}
+        <Services />
+        <Separator />
+        <Menu />
+        <Separator />
+        <Address />
+        <Separator />
+        <IntrestingFacts />
+        <Separator withIcon={false} />
+        <BarJoke />
+        {/* <Separator withIcon={false} />
+      <Footer /> */}
+      </PageLayout>
     </>
   );
 }
