@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <>
       <PageLayout>
-        {/* <Navbar /> */}
         <Services />
         <Separator />
         <Menu />
@@ -21,8 +20,6 @@ export default function Home() {
         <IntrestingFacts />
         <Separator withIcon={false} />
         <BarJoke />
-        {/* <Separator withIcon={false} />
-      <Footer /> */}
       </PageLayout>
     </>
   );
