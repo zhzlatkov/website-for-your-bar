@@ -32,7 +32,7 @@ export default function AdminLayout({ current, children }) {
   const page = [...navigation, ...yourBar].find((page) => page.current);
   return (
     <>
-      <div>
+      <div className="bg-gray-200">
         <AdminSidebar
           navigation={navigation}
           yourBar={yourBar}
