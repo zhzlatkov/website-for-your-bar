@@ -49,8 +49,8 @@ const features = [
 
 export default function IntrestingFacts() {
   return (
-    <div className="mt-12 mb-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="mt-12 mb-16 mx-auto w-11/12 max-w-7xl">
+      <div className="px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Fun Facts Or Not?
@@ -61,7 +61,7 @@ export default function IntrestingFacts() {
         </div>
       </div>
       <div className="mx-auto mt-4 max-w-7xl px-6 sm:mt-10 md:mt-12 lg:px-8">
-        <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
+        <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
           {features.map((feature) => (
             <div key={feature.name} className="relative pl-9">
               <dt className="inline font-semibold text-gray-900">
