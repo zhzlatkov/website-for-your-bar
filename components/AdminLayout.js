@@ -24,7 +24,7 @@ export default function AdminLayout({ current, children }) {
       id: 2,
       name: "Products",
       href: "/your-bar-admin/products",
-      initial: "W",
+      initial: "P",
       current: current === "products",
     },
   ];
