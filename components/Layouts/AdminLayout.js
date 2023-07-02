@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import AdminSidebar from "./AdminSidebar";
-import AdminNavbar from "./AdminNavbar";
+import AdminSidebar from "../AdminSidebar";
+import AdminNavbar from "../AdminNavbar";
 
 export default function AdminLayout({ current, children }) {
   const navigation = [

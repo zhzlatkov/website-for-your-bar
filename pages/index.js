@@ -1,10 +1,10 @@
 import Menu from "@/components/Menu.js";
-import PageLayout from "@/components/PageLayout.js";
 import Navbar from "../components/Navbar.js";
 import BarJoke from "@/components/BarJoke.js";
 import Address from "@/components/Address.js";
 import Services from "@/components/Services.js";
 import Separator from "@/components/Separator.js";
+import PageLayout from "@/components/Layouts/PageLayout.js";
 import IntrestingFacts from "@/components/IntrestingFacts.js";
 
 export default function Home() {
