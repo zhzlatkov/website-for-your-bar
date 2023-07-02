@@ -1,4 +1,4 @@
-import AdminLayout from "@/components/AdminLayout";
+import AdminLayout from "@/components/Layouts/AdminLayout";
 import prisma from "../../services/prismaClient.mjs";
 import ProductsTable from "@/components/ProductsTable";
 
