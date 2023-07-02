@@ -7,8 +7,8 @@ import {
 
 export default function Navbar() {
   return (
-    <nav className="bg-gradient-to-r from-yellow-400 via-white to-yellow-400 ">
-      <div className="flex justify-between h-12 items-center m-auto max-w-7xl">
+    <nav className="bg-gradient-to-r from-yellow-500 from-30% via-white to-yellow-500 to-70%">
+      <div className="flex justify-between h-12 items-center m-auto max-w-6xl">
         <Link
           href="mailto:zhzlatko@gmail.com"
           alt="send email to zhzlatkov@gmail.com"

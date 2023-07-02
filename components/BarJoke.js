@@ -14,7 +14,7 @@ export default function Testemonial() {
           />
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-x-8 gap-y-4 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-x-8 gap-y-4 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
         <div className="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
           <Image
             src="https://img.freepik.com/free-photo/young-crazy-businessman-dancing_1194-9853.jpg?w=740&t=st=1685564918~exp=1685565518~hmac=f19ecb50ede4a2d570a561c2a63834c294cc604cf8e391736af345887b9ef685"
