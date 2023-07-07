@@ -46,7 +46,7 @@ export default async function categoryValidator(sanitizedCategory) {
 
   let isCategoryNameUnique = false;
   if (category.id) {
-    const isExistingCategory = await prisma.category.findFirst({
+    const isExistingCategory = await prisma.categories.findFirst({
       where: {
         name: category.name,
       },
@@ -56,7 +56,7 @@ export default async function categoryValidator(sanitizedCategory) {
       : isExistingCategory.id === Number(category.id);
   } else {
     isCategoryNameUnique = Boolean(
-      !(await prisma.category.findFirst({
+      !(await prisma.categories.findFirst({
         where: {
           name: category.name,
         },
