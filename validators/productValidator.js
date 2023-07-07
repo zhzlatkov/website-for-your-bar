@@ -81,7 +81,7 @@ export default async function productValidator(sanitizedProduct) {
       id: Number(categoryId),
     },
   });
-  W;
+
   if (!isCategoryExist) {
     return {
       result: false,
