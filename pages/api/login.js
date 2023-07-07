@@ -46,17 +46,16 @@ export default async function login(req, res) {
     });
   }
 
-  const accessToken = generateToken();
+  const authToken = generateToken();
 
   await prisma.authToken.create({
     data: {
-      token: accessToken,
+      token: authToken,
       date: Date.now(),
       userId: user.id,
     },
   });
-
-  return res.status(200).send({ accessToken });
+  return res.status(200).send({ authToken });
 }
 
 function generateToken(len = 64) {

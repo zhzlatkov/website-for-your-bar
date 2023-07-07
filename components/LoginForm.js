@@ -1,4 +1,4 @@
-import { Router } from "next/router";
+import Router from "next/router";
 import { useState } from "react";
 
 export default function LoginForm() {
@@ -23,7 +23,6 @@ export default function LoginForm() {
         },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await res.json();
 
       if (res.status === 200) {

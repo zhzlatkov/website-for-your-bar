@@ -21,6 +21,7 @@ model User {
 model AuthToken {
   id     Int    @id @default(autoincrement())
   token  String?
+  date BigInt?
   user   User?   @relation(fields: [userId], references: [id])
   userId Int
 }
