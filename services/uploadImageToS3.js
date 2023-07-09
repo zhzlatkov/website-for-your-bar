@@ -1,19 +1,16 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-export default async function uploadImageToS3(image, productName) {
+export default async function uploadImageToS3(image, name, path = "general") {
   const splitedBase64Image = image.split(";base64,");
   const fileExtension = splitedBase64Image[0].split("/").pop();
   const imageType = splitedBase64Image[0].split(":").pop();
   const buffer = Buffer.from(splitedBase64Image.pop(), "base64");
-  productName.trim().replace(" ", "%");
-  const imagePath = `products/photos/${productName}-${Date.now()}.${fileExtension}`;
+  name.trim().replace(" ", "%");
+  const imagePath = `${path}/photos/${name}-${Date.now()}.${fileExtension}`;
 
   try {
     await upload(buffer, process.env.AWS_BUCKET, imagePath, imageType);
   } catch (err) {
-    res.status(400).send({
-      message: err.message,
-    });
     console.error(err);
   }
   return "/" + imagePath;
