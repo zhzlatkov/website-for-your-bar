@@ -16,7 +16,7 @@ You can start editing some of the pages by modifying them in `pages/`. The page 
 
 ## Additional Information about the project:
 
-This project is using Next.js, Tailwind, TailwindUI, HeadlesUI, Heroicons, Prisma, PrismaClient, Yup, ESLint, Prettier, Husky,
+This project is using Next.js, Tailwind, TailwindUI, HeadlesUI, Heroicons, Prisma, PrismaClient, Amazon s3, Yup, ESLint, Prettier, Husky,
 
 Zlatko Zlatkov creates the whole design, it is inspired by the menu of one local Bulgarian Bar and is implemented using TailwindUI components, HeadlesUI components, and Heroicons.
 
@@ -62,3 +62,62 @@ Next.js deployment documentation(https://nextjs.org/docs/deployment) for more de
 ### on PlanetScale
 
 ...
+
+## Set Up Amazon s3
+
+### Steps to create an S3 public bucket:
+
+1. In AWS console, go to S3 Management Console at https://console.aws.amazon.com/s3/
+2. Click on “Create Bucket” button
+3. You will be prompted to enter a bucket name as well as selecting a region where you want the bucket to reside.
+4. Uncheck “Block all public access” under Set permission option to create a public bucket.
+5. After creating the bucket, click on the bucket name and go to the Permissions tab.
+6. Click on "Bucket Policy" and add the following policy:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucket-name/*"
+            ]
+        }
+    ]
+}
+```
+
+7. Replace `bucket-name` with your bucket name.
+8. Save the policy.
+
+### Get Access key and Secret access key:
+
+1. Go to AWS console and click on your username in the top right corner.
+2. Click on “My Security Credentials”.
+3. Click on “Access keys (access key ID and secret access key)”.
+4. Click on “Create New Access Key” button.
+5. Add new Environment Variable/Secret with Key/Variable = AWS_ACCESS_KEY_ID to your hosting service provider
+6. Copy your Access Key ID and paste it into the value for this new variable/secret.
+7. Add new Environment Variable/Secret with Key/Variable = AWS_SECRET_ACCESS_KEY to your hosting service provider
+8. Copy your Secret access key ID and paste it into the value for this new variable/secret.
+
+Can check out these links for more information and more guidelines:
+(1) How to Create Amazon S3 Bucket and Get User Access Key. https://preventdirectaccess.com/docs/amazon-s3-quick-start-guide/.
+(2) Step 1: Create your first S3 bucket - Amazon Simple Storage Service. https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html.
+(3) How to create an S3 Bucket and AWS Access Key ID and Secret ... - Medium. https://medium.com/@shamnad.p.s/how-to-create-an-s3-bucket-and-aws-access-key-id-and-secret-access-key-for-accessing-it-5653b6e54337.
+
+# I hope this helps! Let me know if you have any other questions.
+
+## [Email](zhzlatkov@gmail.com)
+
+## [Github](https://www.linkedin.com/zlatkozlatkov/)
+
+## [Twitter](https://twitter.com/ZlatkoZlatkov2)
+
+## [LinkedIn](https://github.com/zhzlatkov/)
