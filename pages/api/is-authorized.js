@@ -9,13 +9,17 @@ export default async function isAuthorized(req, res) {
         },
       },
     },
+    include: { token: true },
   });
 
   if (user == null) {
     return res.status(403).send({ message: "Forbidden" });
   }
 
-  const isTokenTooOld = Date.now() - user.token.date > 2592000000;
+  const tokenDate = user.token.find(
+    (token) => token.token === req.headers.authorization
+  );
+  const isTokenTooOld = Date.now() - Number(tokenDate.date) > 2592000000;
 
   if (isTokenTooOld) {
     return res.status(403).send({ message: "Forbidden" });
