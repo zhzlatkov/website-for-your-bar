@@ -5,7 +5,7 @@ export default async function uploadImageToS3(image, name, path = "general") {
   const fileExtension = splitedBase64Image[0].split("/").pop();
   const imageType = splitedBase64Image[0].split(":").pop();
   const buffer = Buffer.from(splitedBase64Image.pop(), "base64");
-  name.trim().replace(" ", "%");
+  name = name.trim().replaceAll(" ", "-");
   const imagePath = `${path}/photos/${name}-${Date.now()}.${fileExtension}`;
 
   try {
@@ -13,7 +13,7 @@ export default async function uploadImageToS3(image, name, path = "general") {
   } catch (err) {
     console.error(err);
   }
-  return "/" + imagePath;
+  return imagePath;
 }
 
 async function upload(buffer, bucket, path, contentType) {

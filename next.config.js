@@ -4,7 +4,11 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: ["cdn.pixabay.com", "img.freepik.com"],
+    domains: [
+      "cdn.pixabay.com",
+      "img.freepik.com",
+      "website-for-your-bar.s3.eu-central-1.amazonaws.com",
+    ],
   },
 };
 

@@ -8,38 +8,33 @@ async function validateCategory(category) {
       name: string().required(),
       shortDescription: string().required(),
       status: boolean().required(),
-      photoPath: string().when("uploadPhoto", {
-        is: (val) => !val || val.length === 0,
-        then: string().required(
-          "photo path is required if there is no uploaded photo"
-        ),
-        otherwise: string(),
-      }),
+      photoPath: string(),
     }),
-    uploadPhoto: string().when("photoPath", {
-      is: (val) => !val || val.length === 0,
-      then: string().required(
-        "uploading photo is required when creating a category"
-      ),
-      otherwise: string(),
-    }),
+    uploadPhoto: string(),
   });
   let isCategoryValid = {};
 
   try {
-    categorySchema.validate(category);
+    await categorySchema.validate(category);
     isCategoryValid = { result: true };
   } catch (err) {
-    isCategoryValid = { result: false, err };
+    isCategoryValid = { result: false, error: err.message };
   }
 
   return isCategoryValid;
 }
 
 export default async function categoryValidator(sanitizedCategory) {
+  if (
+    sanitizedCategory.image === "" &&
+    sanitizedCategory.category.photoPath === ""
+  ) {
+    return { result: false, message: "Image is missing" };
+  }
+
   const isCategoryValid = await validateCategory(sanitizedCategory);
   if (!isCategoryValid.result) {
-    return { result: false, message: isCategoryValid.err };
+    return { result: false, message: isCategoryValid.error };
   }
 
   const { category } = sanitizedCategory;
