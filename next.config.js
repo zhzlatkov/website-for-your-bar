@@ -10,6 +10,15 @@ const nextConfig = {
       "website-for-your-bar.s3.eu-central-1.amazonaws.com",
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/products",
+        destination: "/menu",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
