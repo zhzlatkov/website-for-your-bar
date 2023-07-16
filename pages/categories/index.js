@@ -1,7 +1,7 @@
+import prisma from "@/services/prismaClient.mjs";
 import CategoryList from "@/components/CategoryList";
 import PageLayout from "@/components/Layouts/PageLayout";
-import prisma from "@/services/prismaClient.mjs";
-import generateProductPhotoUrl from "@/services/generateProductPhotoUrl";
+import generatePhotoUrl from "@/services/generatePhotoUrl";
 
 export default function Categories({ categories }) {
   return (
@@ -15,8 +15,7 @@ export async function getServerSideProps() {
   let categories = await prisma.categories.findMany();
   categories = categories.filter((category) => category.status);
   categories.map(
-    (category) =>
-      (category.photoPath = generateProductPhotoUrl(category.photoPath))
+    (category) => (category.photoPath = generatePhotoUrl(category.photoPath))
   );
   return {
     props: {
