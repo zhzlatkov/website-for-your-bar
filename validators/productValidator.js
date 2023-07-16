@@ -6,28 +6,16 @@ async function validateProduct(product) {
     product: object({
       id: number(),
       name: string().required(),
+      categoryId: number().required().positive().integer(),
       price: number().required().positive().integer(),
       quantity: number().required().positive().integer(),
       quantityType: string(),
       shortDescription: string().required(),
       longDescription: string().required(),
       status: boolean().required(),
-      photoPath: string().when("uploadPhoto", {
-        is: (val) => !val || val.length === 0,
-        then: string().required(
-          "photo path is required if there is no uploaded photo"
-        ),
-        otherwise: string(),
-      }),
+      photoPath: string(),
     }),
-    categoryId: number().required().positive().integer(),
-    uploadPhoto: string().when("photoPath", {
-      is: (val) => !val || val.length === 0,
-      then: string().required(
-        "uploading photo is required when creating a product"
-      ),
-      otherwise: string(),
-    }),
+    uploadPhoto: string(),
   });
   let isProductValid = {};
 
@@ -35,33 +23,41 @@ async function validateProduct(product) {
     productSchema.validate(product);
     isProductValid = { result: true };
   } catch (err) {
-    isProductValid = { result: false, err };
+    isProductValid = { result: false, error: err.message };
   }
 
   return isProductValid;
 }
 
 export default async function productValidator(sanitizedProduct) {
-  const isProductValid = await validateProduct(sanitizedProduct);
-  if (!isProductValid.result) {
-    return { result: false, message: isProductValid.err };
+  if (
+    sanitizedProduct.uploadPhoto === "" &&
+    sanitizedProduct.product.photoPath === ""
+  ) {
+    return { result: false, message: "Image is missing" };
   }
 
-  const { product, categoryId } = sanitizedProduct;
+  const isProductValid = await validateProduct(sanitizedProduct);
+  if (!isProductValid.result) {
+    return { result: false, message: isProductValid.error };
+  }
+  const { product } = sanitizedProduct;
 
   let isProductNameUnique = false;
+
   if (product.id) {
-    const isExistingProduct = await prisma.product.findFirst({
+    const isExistingProduct = await prisma.products.findFirst({
       where: {
         name: product.name,
       },
     });
+
     isProductNameUnique = !isExistingProduct
       ? true
       : isExistingProduct.id === Number(product.id);
   } else {
     isProductNameUnique = Boolean(
-      !(await prisma.product.findFirst({
+      !(await prisma.products.findFirst({
         where: {
           name: product.name,
         },
@@ -76,9 +72,9 @@ export default async function productValidator(sanitizedProduct) {
     };
   }
 
-  const isCategoryExist = await prisma.category.findFirst({
+  const isCategoryExist = await prisma.categories.findFirst({
     where: {
-      id: Number(categoryId),
+      id: Number(product.categoryId),
     },
   });
 

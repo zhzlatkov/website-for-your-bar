@@ -2,6 +2,7 @@ export default function normalizeProduct(product) {
   let sanitizedProduct = {
     product: {
       name: String(product.product.name).trim().toLowerCase(),
+      categoryId: Number(product.product.categoryId),
       price: Number(product.product.price),
       quantity: Number(product.product.quantity),
       quantityType: String(product.product.quantityType).trim().toLowerCase(),
@@ -10,7 +11,6 @@ export default function normalizeProduct(product) {
       status: Boolean(product.product.status),
       photoPath: String(product.product.photoPath).trim().toLowerCase(),
     },
-    categoryId: Number(product.brandId),
     image: product.image,
   };
   if (product.image) {

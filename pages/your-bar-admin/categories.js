@@ -1,6 +1,7 @@
 import AdminLayout from "@/components/Layouts/AdminLayout";
 import prisma from "../../services/prismaClient.mjs";
 import CategoriesTable from "@/components/CategoriesTable";
+import generateProductPhotoUrl from "@/services/generateProductPhotoUrl.js";
 
 export default function Categories({ categories }) {
   return (
@@ -12,7 +13,10 @@ export default function Categories({ categories }) {
 
 export async function getServerSideProps() {
   let categories = await prisma.Categories.findMany();
-
+  categories.map(
+    (category) =>
+      (category.photoPath = generateProductPhotoUrl(category.photoPath))
+  );
   return {
     props: {
       categories,

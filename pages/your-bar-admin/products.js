@@ -1,6 +1,7 @@
 import AdminLayout from "@/components/Layouts/AdminLayout";
 import prisma from "../../services/prismaClient.mjs";
 import ProductsTable from "@/components/ProductsTable";
+import generateProductPhotoUrl from "@/services/generateProductPhotoUrl";
 
 export default function Products({ products }) {
   return (
@@ -12,9 +13,10 @@ export default function Products({ products }) {
 
 export async function getServerSideProps() {
   let products = await prisma.Products.findMany();
-  products = products.map((p) => ({
-    ...p,
-  }));
+  products.map(
+    (product) =>
+      (product.photoPath = generateProductPhotoUrl(product.photoPath))
+  );
 
   return {
     props: {

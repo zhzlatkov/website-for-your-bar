@@ -11,8 +11,8 @@ export default function EditProductPage({ categories, product }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const categories = await prisma.category.findMany({});
-  const product = await prisma.product.findFirst({
+  const categories = await prisma.categories.findMany({});
+  const product = await prisma.products.findFirst({
     where: {
       id: Number(query.id),
     },
