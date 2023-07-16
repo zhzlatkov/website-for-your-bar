@@ -1,15 +1,20 @@
 import { useState } from "react";
 import Router from "next/router";
+import Loading from "./Loading";
 
 export default function ProductForm({ categories, product = undefined }) {
   const [error, setError] = useState({ status: false });
-  const [categoryId, setCategoryId] = useState(product?.category || "");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [categoryId, setCategoryId] = useState(
+    Number(product?.categoryId) || 0
+  );
   const [name, setName] = useState(product?.name || "");
-  const [price, setPrice] = useState(product?.price || Number);
-  const [quantity, setQuantity] = useState(product?.quantity || "");
+  const [price, setPrice] = useState(Number(product?.price) || 0);
+  const [quantity, setQuantity] = useState(Number(product?.quantity) || 0);
   const [quantityType, setQuantityType] = useState(product?.quantityType || "");
 
-  const [status, setStatus] = useState(product?.status || Boolean);
+  const [status, setStatus] = useState(Boolean(product?.status) || false);
   const [shortDescription, setShortDescription] = useState(
     product?.shortDescription || ""
   );
@@ -40,9 +45,11 @@ export default function ProductForm({ categories, product = undefined }) {
   const onSubmit = (e) => {
     e.preventDefault();
     setError({ status: false });
+    setIsLoading(true);
 
     const productInfo = {
       name,
+      categoryId,
       price,
       quantity,
       quantityType,
@@ -68,20 +75,24 @@ export default function ProductForm({ categories, product = undefined }) {
         },
         body: JSON.stringify({
           product: productInfo,
-          categoryId,
           image,
         }),
       });
       const result = await response.json();
       if (response.status !== 200) {
         setError({ status: true, message: result.message });
+        setIsLoading(false);
         console.error(result.message);
       } else {
+        setIsLoading(false);
         return Router.push("/your-bar-admin/products");
       }
     })();
   };
 
+  if (isLoading) {
+    return <Loading className="w-full h-max opacity-25" />;
+  }
   return (
     <form
       className="space-y-8 divide-y divide-gray-200 p-8"
@@ -223,7 +234,7 @@ export default function ProductForm({ categories, product = undefined }) {
                   min="0"
                   required
                   max="9999"
-                  value={price}
+                  value={price ? price : null}
                   onChange={onPriceChange}
                 />
               </div>
@@ -238,12 +249,12 @@ export default function ProductForm({ categories, product = undefined }) {
               <div className="mt-1 sm:col-span-2 sm:mt-0">
                 <input
                   className="block w-full border-2 rounded-md text-gray-700"
-                  type="text"
+                  type="number"
                   name="product quantity"
                   id="product quantity"
                   minLength="1"
                   maxLength="40"
-                  value={quantity}
+                  value={quantity ? quantity : null}
                   onChange={onQuantityChange}
                 />
               </div>
@@ -284,7 +295,6 @@ export default function ProductForm({ categories, product = undefined }) {
                   required
                   onChange={onStatusChange}
                 >
-                  <option value="" disabled></option>
                   <option value="true">True</option>
                   <option value="false">False</option>
                 </select>

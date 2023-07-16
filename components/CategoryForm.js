@@ -7,7 +7,7 @@ export default function CategoryForm({ category = undefined }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState(category?.name || "");
-  const [status, setStatus] = useState(category?.status || Boolean);
+  const [status, setStatus] = useState(Boolean(category?.status) || false);
   const [shortDescription, setShortDescription] = useState(
     category?.shortDescription || ""
   );
@@ -185,7 +185,6 @@ export default function CategoryForm({ category = undefined }) {
                     required
                     onChange={onStatusChange}
                   >
-                    <option value="" disabled></option>
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>

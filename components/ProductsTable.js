@@ -88,7 +88,7 @@ export default function ProductsTable({ products }) {
                             <Image
                               classNameRoot="h-10 w-10 rounded-full"
                               classNameImage="object-cover"
-                              src={product.photoUrl}
+                              src={product.photoPath}
                               alt="Image"
                             />
                           </div>
@@ -106,7 +106,9 @@ export default function ProductsTable({ products }) {
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">{product.category}</div>
+                        <div className="text-gray-500">
+                          {product.categoryId}
+                        </div>
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {product.status ? (
@@ -120,8 +122,11 @@ export default function ProductsTable({ products }) {
                         )}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <Link className="text-gray-500">
-                          {product.photoPath}
+                        <Link
+                          href={product.photoPath}
+                          className="text-gray-500"
+                        >
+                          {`${product.photoPath.substring(8, 35)}...`}
                         </Link>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
