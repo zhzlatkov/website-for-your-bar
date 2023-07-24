@@ -49,34 +49,32 @@ const features = [
 
 export default function IntrestingFacts() {
   return (
-    <div className="mt-12 mb-16 mx-auto w-11/12 max-w-6xl">
-      <div className="px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl sm:text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Fun Facts Or Not?
-          </p>
-          <p className="mt-4 text-base sm:text-lg leading-8 text-gray-600 underline decoration-yellow-300 decoration-[10px] [text-decoration-skip-ink:none] underline-offset-[-3px]">
-            Lets prepare you for your next going out. Intresting facts!
-          </p>
-        </div>
+    <div className="mb-20 mx-auto w-11/12 max-w-6xl">
+      <div className="mx-auto max-w-2xl sm:text-center">
+        <p className="text-3xl font-bold tracking-tight text-pirateGold-200 sm:text-4xl">
+          Fun Facts Or Not?
+        </p>
+        <p className="mt-2 text-lg font-bold leading-8 text-pirateGold-500 underline decoration-pirateGold-900 decoration-4 [text-decoration-skip-ink:none] underline-offset-[-2px]">
+          Lets prepare you for your next going out. Intresting facts!
+        </p>
       </div>
-      <div className="mx-auto mt-4 max-w-6xl px-6 sm:mt-10 md:mt-12 lg:px-8">
-        <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16 lg:gap-y-16">
-          {features.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-              <dt className="inline font-semibold text-gray-900">
-                <FontAwesomeIcon
-                  icon={feature.icon}
-                  size="lg"
-                  className="absolute left-1 top-1 h-5 w-5 text-yellow-400"
-                />
-                {feature.name}
-              </dt>{" "}
-              <dd className="inline">{feature.description}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+      <dl className="mx-auto mt-4 lg:mt-10 grid grid-cols-1 gap-x-4 gap-y-2 text-base leading-7 text-pirateGold-500 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
+        {features.map((feature) => (
+          <div key={feature.name} className="relative pl-9">
+            <dt className="inline font-semibold text-pirateGold-500">
+              <FontAwesomeIcon
+                icon={feature.icon}
+                size="lg"
+                className="absolute left-1 top-1 h-5 w-5 text-pirateGold-500"
+              />
+              {feature.name}
+            </dt>{" "}
+            <dd className="text-pirateGold-200 inline">
+              {feature.description}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }

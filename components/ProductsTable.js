@@ -3,16 +3,18 @@ import Image from "./Image";
 
 export default function ProductsTable({ products }) {
   return (
-    <div className="pt-8 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className="pt-8 px-4 sm:px-6 lg:px-8 bg-shark-950">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">Products</h1>
+          <h1 className="text-xl font-semibold text-pirateGold-200">
+            Products
+          </h1>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <Link href="create-product">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-pirateGold-800 px-4 py-2 text-sm font-medium text-pirateGold-200 shadow-sm hover:bg-pirateGold-700 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2 sm:w-auto"
             >
               Add new product
             </button>
@@ -22,49 +24,49 @@ export default function ProductsTable({ products }) {
       <div className="mt-8 flex flex-col">
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+            <div className="overflow-hidden shadow ring-1 ring-shark-900 md:rounded-lg">
+              <table className="min-w-full divide-y divide-shark-900">
+                <thead className="bg-shark-900">
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-pirateGold-200 sm:pl-6"
                     >
                       ID
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-pirateGold-200 sm:pl-6"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-pirateGold-200"
                     >
                       Price
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-pirateGold-200"
                     >
                       Quantity
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-pirateGold-200"
                     >
                       Category
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-pirateGold-200"
                     >
                       Status
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-pirateGold-200"
                     >
                       Photo
                     </th>
@@ -76,11 +78,11 @@ export default function ProductsTable({ products }) {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-shark-900 bg-shark-950">
                   {products.map((product) => (
                     <tr key={product.id}>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">{product.id}</div>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
+                        <div className="text-pirateGold-400">{product.id}</div>
                       </td>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                         <div className="flex items-center">
@@ -92,25 +94,27 @@ export default function ProductsTable({ products }) {
                               alt="Image"
                             />
                           </div>
-                          <div className="ml-4 font-medium text-gray-900">
+                          <div className="ml-4 font-medium text-pirateGold-200">
                             {product.name}
                           </div>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">{product.price}</div>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
+                        <div className="text-pirateGold-400">
+                          {product.price}
+                        </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
+                        <div className="text-pirateGold-400">
                           {product.quantity} {product.quantityType}
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
+                        <div className="text-pirateGold-400">
                           {product.categoryId}
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
                         {product.status ? (
                           <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
                             Available
@@ -121,10 +125,10 @@ export default function ProductsTable({ products }) {
                           </span>
                         )}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400">
                         <Link
                           href={product.photoPath}
-                          className="text-gray-500"
+                          className="text-pirateGold-400"
                         >
                           {`${product.photoPath.substring(8, 35)}...`}
                         </Link>
@@ -132,7 +136,7 @@ export default function ProductsTable({ products }) {
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <Link
                           href={`edit-product/${product.id}`}
-                          className="text-indigo-600 hover:text-indigo-900"
+                          className="text-pirateGold-600 hover:text-pirateGold-900"
                         >
                           Edit
                           <span className="sr-only">, {product.name}</span>

@@ -2,14 +2,14 @@ import prisma from "../../services/prismaClient.mjs";
 import PageLayout from "@/components/Layouts/PageLayout.js";
 import ProductComponent from "@/components/ProductComponent.js";
 import generatePhotoUrl from "@/services/generatePhotoUrl.js";
+import Separator from "@/components/Separator";
 
 export default function Product({ product }) {
   return (
-    <div className="bg-gray-900 ">
-      <PageLayout>
-        <ProductComponent product={product}></ProductComponent>
-      </PageLayout>
-    </div>
+    <PageLayout>
+      <Separator withIcon={false} />
+      <ProductComponent product={product}></ProductComponent>
+    </PageLayout>
   );
 }
 

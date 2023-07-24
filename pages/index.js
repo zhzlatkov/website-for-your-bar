@@ -1,26 +1,44 @@
 import Menu from "@/components/Menu.js";
-import Navbar from "../components/Navbar.js";
 import BarJoke from "@/components/BarJoke.js";
 import Address from "@/components/Address.js";
 import Services from "@/components/Services.js";
 import Separator from "@/components/Separator.js";
 import PageLayout from "@/components/Layouts/PageLayout.js";
 import IntrestingFacts from "@/components/IntrestingFacts.js";
+import prisma from "../services/prismaClient.mjs";
+import generatePhotoUrl from "@/services/generatePhotoUrl.js";
 
-export default function Home() {
+export default function Home({ categories }) {
   return (
     <>
       <PageLayout>
         <Services />
         <Separator />
-        <Menu />
+        <Menu categories={categories} />
         <Separator />
         <Address />
-        <Separator />
         <IntrestingFacts />
         <Separator withIcon={false} />
         <BarJoke />
       </PageLayout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  let categories = await prisma.Categories.findMany({
+    include: { products: true },
+  });
+  categories.map((category) => {
+    category.photoPath = generatePhotoUrl(category.photoPath);
+    category.products.map(
+      (product) => (product.photoPath = generatePhotoUrl(product.photoPath))
+    );
+    return;
+  });
+  return {
+    props: {
+      categories,
+    },
+  };
 }

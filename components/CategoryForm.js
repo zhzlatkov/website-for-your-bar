@@ -77,30 +77,30 @@ export default function CategoryForm({ category = undefined }) {
   return (
     <>
       <form
-        className="space-y-8 divide-y divide-gray-200 p-8"
+        className="space-y-8 divide-y divide-shark-800 p-8"
         onSubmit={onSubmit}
       >
-        <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+        <div className="space-y-8 divide-y divide-shark-800 sm:space-y-5">
           <div className="space-y-6 sm:space-y-5">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-pirateGold-400">
                 {!category ? "Add New Category" : "Edit Category"}
               </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
+              <p className="mt-1 max-w-2xl text-sm text-pirateGold-400">
                 *Must be filled
               </p>
             </div>
             <div className="space-y-6 sm:space-y-5">
-              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 sm:pt-5">
                 <label
                   htmlFor="category-name"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  className="block text-sm font-medium text-pirateGold-200 sm:mt-px sm:pt-2"
                 >
                   Category Name*
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
-                    className="block w-full border-2 rounded-md text-gray-700"
+                    className="block w-full border-2 rounded-md text-pirateGold-200 bg-shark-950 border-shark-800"
                     type="text"
                     name="category name"
                     id="category-name"
@@ -111,23 +111,23 @@ export default function CategoryForm({ category = undefined }) {
                   />
                 </div>
               </div>
-              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 sm:pt-5">
                 <label
                   htmlFor="cover-photo"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  className="block text-sm font-medium text-pirateGold-200 sm:mt-px sm:pt-2"
                 >
                   Category Photo*
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <div
                     className={
-                      (image !== "" ? "border-green-400" : "border-gray-300") +
+                      (image !== "" ? "border-green-400" : "border-shark-800") +
                       " flex max-w-lg justify-center rounded-md border-2 border-dashed px-6 pt-5 pb-6 relative"
                     }
                   >
                     <div className="space-y-1 text-center">
                       <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
+                        className="mx-auto h-12 w-12 text-pirateGold-400"
                         stroke="currentColor"
                         fill="none"
                         viewBox="0 0 48 48"
@@ -140,10 +140,10 @@ export default function CategoryForm({ category = undefined }) {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <div className="flex text-sm text-gray-600">
+                      <div className="flex text-sm text-pirateGold-200">
                         <label
                           htmlFor="file-upload"
-                          className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                          className="relative cursor-pointer rounded-md bg-shark-950 font-medium text-pirateGold-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-pirateGold-500 focus-within:ring-offset-2 hover:text-pirateGold-500"
                         >
                           <span>
                             {image !== ""
@@ -162,23 +162,23 @@ export default function CategoryForm({ category = undefined }) {
                         </label>
                         <p className="pl-1">or drag and drop</p>
                       </div>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-pirateGold-400">
                         PNG, JPG, GIF up to 10MB
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 sm:pt-5">
                 <label
                   htmlFor="category"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  className="block text-sm font-medium text-pirateGold-200 sm:mt-px sm:pt-2"
                 >
                   Category Status*
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <select
-                    className="block w-full border-2 rounded-md text-gray-700"
+                    className="block w-full border-2 rounded-md text-pirateGold-200 bg-shark-950 border-shark-800"
                     id="category status"
                     name="category status"
                     value={status}
@@ -190,16 +190,16 @@ export default function CategoryForm({ category = undefined }) {
                   </select>
                 </div>
               </div>
-              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 sm:pt-5">
                 <label
                   htmlFor="category-name"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  className="block text-sm font-medium text-pirateGold-200 sm:mt-px sm:pt-2"
                 >
                   Category Short Description
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <textarea
-                    className="block w-full border-2 rounded-md text-gray-700 h-20"
+                    className="block w-full h-20 border-2 rounded-md text-pirateGold-200 bg-shark-950 border-shark-800"
                     type="text"
                     name="category floring"
                     id="category floring"
@@ -232,7 +232,7 @@ export default function CategoryForm({ category = undefined }) {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-pirateGold-800 py-2 px-4 text-sm font-medium text-pirateGold-200 shadow-sm hover:bg-pirateGold-700 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2"
               >
                 Save
               </button>

@@ -54,7 +54,7 @@ export default function AdminLayout({ current, children }) {
       {!isAdmin ? (
         <Loading />
       ) : (
-        <div className="bg-gray-200">
+        <div className="bg-shark-950">
           <AdminSidebar
             navigation={navigation}
             yourBar={yourBar}
@@ -62,7 +62,7 @@ export default function AdminLayout({ current, children }) {
             setSidebarOpen={setSidebarOpen}
           />
           <AdminNavbar setSidebarOpen={setSidebarOpen} page={page} />
-          <main className="py-10 lg:pl-72 min-h-screen bg-white">
+          <main className="py-10 lg:pl-72 min-h-screen bg-shark-950">
             <div className="px-4 sm:px-6 lg:px-8">{children}</div>
           </main>
         </div>

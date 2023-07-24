@@ -1,12 +1,15 @@
 import Image from "./Image";
 
-export default function Testemonial() {
+export default function BarJoke() {
   return (
-    <div className="relative z-10 bg-gray-900 pb-6 sm:pb-14 xl:pb-20">
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="relative z-10 bg-shark-950 pb-6 sm:pb-14 xl:pb-20">
+      <div
+        className="absolute inset-0 overflow-hidden rotate-180"
+        aria-hidden="true"
+      >
         <div className="absolute left-[calc(50%-19rem)] top-[calc(50%-36rem)] transform-gpu blur-3xl">
           <div
-            className="aspect-[1097/1023] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-25"
+            className="aspect-[1097/1023] w-[68.5625rem] bg-gradient-to-r from-shark-950 to-shark-100 opacity-25"
             style={{
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
@@ -14,12 +17,12 @@ export default function Testemonial() {
           />
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-x-8 gap-y-4 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
+      <div className="mx-auto flex w-11/12 max-w-6xl flex-col items-center gap-x-8 gap-y-4 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
         <div className="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
           <Image
             src="https://img.freepik.com/free-photo/young-crazy-businessman-dancing_1194-9853.jpg?w=740&t=st=1685564918~exp=1685565518~hmac=f19ecb50ede4a2d570a561c2a63834c294cc604cf8e391736af345887b9ef685"
             alt="let me tell you some fun bar joke"
-            classNameImage="inset-0 h-full w-full rounded-2xl bg-gray-800 object-cover object-top shadow-2xl border-yellow-400 border-4"
+            classNameImage="inset-0 h-full w-full rounded-md bg-shark-800 object-cover object-top shadow-2xl border-pirateGold-500 border-4"
             classNameRoot="aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto"
           ></Image>
         </div>
@@ -29,7 +32,7 @@ export default function Testemonial() {
               viewBox="0 0 162 128"
               fill="none"
               aria-hidden="true"
-              className="absolute left-0 top-0 -z-10 h-32 stroke-white/20"
+              className="absolute left-0 top-0 -z-10 h-32 stroke-pirateGold-800/50"
             >
               <path
                 id="b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb"
@@ -37,7 +40,7 @@ export default function Testemonial() {
               />
               <use href="#b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb" x={86} />
             </svg>
-            <blockquote className="text-base leading-8 text-white sm:text-2xl sm:leading-9">
+            <blockquote className="text-base leading-8 text-pirateGold-300 sm:text-2xl sm:leading-9">
               <p>
                 In a bar in a remote Alaskan town, a newcomer hears people yell
                 out numbers (#23!, #56, etc.) and then everyone laughs. He asks
@@ -49,8 +52,10 @@ export default function Testemonial() {
               </p>
             </blockquote>
             <figcaption className="mt-8 text-base">
-              <div className="font-semibold text-white">Random guy</div>
-              <div className="mt-1 text-gray-400">in a bar</div>
+              <div className="font-semibold text-pirateGold-500">
+                Random guy
+              </div>
+              <div className="mt-1 text-pirateGold-800">in a bar</div>
             </figcaption>
           </figure>
         </div>

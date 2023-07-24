@@ -27,7 +27,7 @@ export default function AdminSidebar({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-900/80" />
+            <div className="fixed inset-0 bg-shark-900/80" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex">
@@ -58,18 +58,18 @@ export default function AdminSidebar({
                     >
                       <span className="sr-only">Close sidebar</span>
                       <XMarkIcon
-                        className="h-6 w-6 text-white"
+                        className="h-6 w-6 text-pirateGold-200"
                         aria-hidden="true"
                       />
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
+                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-shark-950 px-6 pb-2 ring-1 ring-pirateGold-400">
                   <div className="flex h-16 shrink-0 items-center">
                     <Image
                       src="https://cdn.pixabay.com/photo/2017/09/23/21/21/label-2780146_1280.png"
                       alt="Bar logo"
-                      classNameRoot="w-12 h-12 rounded-full mt-4 border-2 border-white"
+                      classNameRoot="w-12 h-12 rounded-full mt-4 border-2 border-pirateGold-400"
                     ></Image>
                   </div>
                   <nav className="flex flex-1 flex-col">
@@ -82,8 +82,8 @@ export default function AdminSidebar({
                                 href={item.href}
                                 className={
                                   (item.current
-                                    ? "bg-gray-800 text-white"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800") +
+                                    ? "bg-shark-950 text-pirateGold-200"
+                                    : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-700") +
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                 }
                               >
@@ -98,7 +98,7 @@ export default function AdminSidebar({
                         </ul>
                       </li>
                       <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-400">
+                        <div className="text-xs font-semibold leading-6 text-pirateGold-200">
                           Your Bar
                         </div>
                         <ul role="list" className="-mx-2 mt-2 space-y-1">
@@ -108,15 +108,24 @@ export default function AdminSidebar({
                                 href={page.href}
                                 className={
                                   (page.current
-                                    ? "bg-gray-800 text-white"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800") +
+                                    ? "bg-shark-800 text-pirateGold-200"
+                                    : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                 }
                               >
-                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-shark-800 text-[0.625rem] font-medium text-pirateGold-400 group-hover:text-pirateGold-200">
                                   {page.initial}
                                 </span>
-                                <span className="truncate">{page.name}</span>
+                                <span
+                                  className={
+                                    "truncate " +
+                                    (!page.current
+                                      ? ""
+                                      : "text-pirateGold-200 group-hover:text-pirateGold-100")
+                                  }
+                                >
+                                  {page.name}
+                                </span>
                               </Link>
                             </li>
                           ))}
@@ -131,12 +140,12 @@ export default function AdminSidebar({
         </Dialog>
       </Transition.Root>
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-shark-950 px-6">
           <div className="flex h-16 shrink-0 items-center">
             <Image
               src="https://cdn.pixabay.com/photo/2017/09/23/21/21/label-2780146_1280.png"
               alt="Bar logo"
-              classNameRoot="w-14 h-14 rounded-full mt-4 border-2 border-white"
+              classNameRoot="w-14 h-14 rounded-full mt-4 border-2 border-pirateGold-400"
             ></Image>
           </div>
           <nav className="flex flex-1 flex-col">
@@ -149,8 +158,8 @@ export default function AdminSidebar({
                         href={page.href}
                         className={
                           (page.current
-                            ? "bg-gray-800 text-white"
-                            : "text-gray-400 hover:text-white hover:bg-gray-800") +
+                            ? "bg-shark-800 text-pirateGold-200"
+                            : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
                           "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                         }
                       >
@@ -165,7 +174,7 @@ export default function AdminSidebar({
                 </ul>
               </li>
               <li>
-                <div className="text-xs font-semibold leading-6 text-gray-400">
+                <div className="text-xs font-semibold leading-6 text-pirateGold-400">
                   Your Bar
                 </div>
                 <ul role="list" className="-mx-2 mt-2 space-y-1">
@@ -175,15 +184,24 @@ export default function AdminSidebar({
                         href={page.href}
                         className={
                           (page.current
-                            ? "bg-gray-800 text-white"
-                            : "text-gray-400 hover:text-white hover:bg-gray-800") +
+                            ? "bg-shark-800 text-pirateGold-200"
+                            : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
                           "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                         }
                       >
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-shark-800 text-[0.625rem] font-medium text-pirateGold-400 group-hover:text-pirateGold-200">
                           {page.initial}
                         </span>
-                        <span className="truncate">{page.name}</span>
+                        <span
+                          className={
+                            "truncate " +
+                            (!page.current
+                              ? ""
+                              : "text-pirateGold-200 group-hover:text-pirateGold-100")
+                          }
+                        >
+                          {page.name}
+                        </span>
                       </Link>
                     </li>
                   ))}
