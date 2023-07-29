@@ -1,4 +1,20 @@
 export default function BooleanField({ formName, fieldName, value, onChange }) {
+  const onBooleanChange = (e) => {
+    switch (e.target.value) {
+      case "false":
+        onChange({
+          name: fieldName,
+          value: false,
+        });
+        break;
+      case "true":
+        onChange({
+          name: fieldName,
+          value: true,
+        });
+        break;
+    }
+  };
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">
       <label
@@ -14,7 +30,7 @@ export default function BooleanField({ formName, fieldName, value, onChange }) {
           name={fieldName}
           value={value}
           required
-          onChange={onChange}
+          onChange={onBooleanChange}
         >
           <option value="true">True</option>
           <option value="false">False</option>

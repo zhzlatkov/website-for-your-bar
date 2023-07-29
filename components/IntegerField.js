@@ -1,7 +1,8 @@
 export default function IntegerFied({ formName, fieldName, value, onChange }) {
   const onNumberChange = (e) =>
     onChange({
-      target: { name: fieldName, value: Number(e.target.value) },
+      name: fieldName,
+      value: Number(e.target.value),
     });
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">

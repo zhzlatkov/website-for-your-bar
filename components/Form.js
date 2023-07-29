@@ -19,7 +19,7 @@ export default function DymaicForm({
   const [data, setData] = useState(dataObject);
 
   const onChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e;
     setData((prevState) => ({
       ...prevState,
       [name]: value,

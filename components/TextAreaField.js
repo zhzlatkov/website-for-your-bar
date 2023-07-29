@@ -5,6 +5,11 @@ export default function TextAreaField({
   isLong = false,
   onChange,
 }) {
+  const onTextAreaChange = (e) =>
+    onChange({
+      name: fieldName,
+      value: e.target.value,
+    });
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">
       <label
@@ -22,7 +27,7 @@ export default function TextAreaField({
           minLength="1"
           maxLength={isLong ? "9000" : "1000"}
           value={value}
-          onChange={onChange}
+          onChange={onTextAreaChange}
         />
       </div>
     </div>

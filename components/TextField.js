@@ -1,4 +1,9 @@
 export default function TextField({ formName, fieldName, value, onChange }) {
+  const onTextFieldChange = (e) =>
+    onChange({
+      name: fieldName,
+      value: e.target.value,
+    });
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">
       <label
@@ -16,7 +21,7 @@ export default function TextField({ formName, fieldName, value, onChange }) {
           minLength="1"
           maxLength="40"
           value={value}
-          onChange={onChange}
+          onChange={onTextFieldChange}
         />
       </div>
     </div>

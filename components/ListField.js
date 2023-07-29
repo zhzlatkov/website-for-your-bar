@@ -5,6 +5,11 @@ export default function SelectField({
   options,
   onChange,
 }) {
+  const onListChange = (e) =>
+    onChange({
+      name: fieldName,
+      value: e.target.value,
+    });
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">
       <label
@@ -19,7 +24,7 @@ export default function SelectField({
           id={formName + "_" + fieldName}
           name={fieldName}
           value={value}
-          onChange={onChange}
+          onChange={onListChange}
           required
         >
           {options.length ? (

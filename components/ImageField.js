@@ -26,11 +26,10 @@ export default function ImageField({ formName, fieldName, value, onChange }) {
     try {
       const uploadedPhoto = await imageUpload(e);
       if (uploadedPhoto) {
-        onChange({ target: { name: fieldName, value: uploadedPhoto } });
+        onChange({ name: fieldName, value: uploadedPhoto });
       }
     } catch (error) {
       console.error("Error occurred while uploading image:", error);
-      // Handle the error as needed.
     }
   };
 
@@ -46,7 +45,7 @@ export default function ImageField({ formName, fieldName, value, onChange }) {
         <div
           className={
             (value !== "" ? "border-green-800" : "border-shark-800") +
-            " flex max-w-lg justify-center rounded-md border-2 border-dashed px-6 pt-5 pb-6 relative"
+            " flex justify-center rounded-md border-2 border-dashed px-6 pt-5 pb-6 relative"
           }
           onClick={handleTriggerInput}
         >
@@ -86,7 +85,7 @@ export default function ImageField({ formName, fieldName, value, onChange }) {
                   className="sr-only absolute"
                   accept="image/*"
                   required={value ? false : true}
-                  onChange={handleImageChange} // Use the new handler
+                  onChange={handleImageChange}
                 />
               </label>
               <p className="pl-1">or drag and drop</p>
