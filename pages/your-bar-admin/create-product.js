@@ -1,19 +1,10 @@
-import prisma from "../../services/prismaClient.mjs";
 import Form from "../../components/Form";
+import prisma from "../../services/prismaClient.mjs";
 import AdminLayout from "../../components/Layouts/AdminLayout";
+import normalizeProduct from "@/normalizers/frontend/normalizeProduct";
 
 export default function CreateProductPage({ categories }) {
-  const product = {
-    product_name: "",
-    price: 0,
-    quantity: 0,
-    quantity_type: "",
-    short_description: "",
-    long_description: "",
-    category: 0,
-    status: false,
-    photo: "",
-  };
+  const sanitizedProduct = normalizeProduct();
 
   return (
     <>
@@ -21,7 +12,7 @@ export default function CreateProductPage({ categories }) {
         <Form
           formName={"create_product"}
           destinationURL={"/products"}
-          dataObject={product}
+          dataObject={sanitizedProduct}
           relationData={{ name: "category", options: categories }}
         />
       </AdminLayout>

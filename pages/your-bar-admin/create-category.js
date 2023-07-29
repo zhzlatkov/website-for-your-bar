@@ -1,20 +1,16 @@
 import Form from "../../components/Form";
 import AdminLayout from "../../components/Layouts/AdminLayout";
+import normalizeCategory from "@/normalizers/frontend/normalizeCategory";
 
 export default function CreateCategoryPage() {
-  const category = {
-    category_name: "",
-    photo: "",
-    short_description: "",
-    status: false,
-  };
+  const sanitizedCategory = normalizeCategory();
   return (
     <>
       <AdminLayout current="create-category">
         <Form
           formName="create_category"
           destinationURL="/categories"
-          dataObject={category}
+          dataObject={sanitizedCategory}
         />
       </AdminLayout>
     </>

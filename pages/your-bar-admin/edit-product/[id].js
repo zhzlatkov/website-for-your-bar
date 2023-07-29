@@ -1,11 +1,18 @@
 import prisma from "../../../services/prismaClient.mjs";
-import ProductForm from "../../../components/ProductForm";
+import Form from "../../../components/Form";
 import AdminLayout from "../../../components/Layouts/AdminLayout";
+import normalizeProduct from "@/normalizers/frontend/normalizeProduct";
 
 export default function EditProductPage({ categories, product }) {
+  const sanitizedProduct = normalizeProduct(product);
   return (
     <AdminLayout current="edit-product">
-      <ProductForm categories={categories} product={product} />
+      <Form
+        formName={"create_product"}
+        destinationURL={"/products"}
+        dataObject={sanitizedProduct}
+        relationData={{ name: "category", options: categories }}
+      />
     </AdminLayout>
   );
 }

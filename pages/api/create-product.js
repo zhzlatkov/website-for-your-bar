@@ -1,5 +1,5 @@
 import prisma from "../../services/prismaClient.mjs";
-import normalizeProduct from "../../normalizers/normalizeProduct.js";
+import normalizeProduct from "../../normalizers/backend/normalizeProduct.js";
 import uploadImageToS3 from "../../services/uploadImageToS3.js";
 import productValidator from "../../validators/productValidator.js";
 

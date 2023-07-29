@@ -1,5 +1,5 @@
 import prisma from "../../services/prismaClient.mjs";
-import normalizeCategory from "../../normalizers/normalizeCategory.js";
+import normalizeCategory from "../../normalizers/backend/normalizeCategory.js";
 import uploadImageToS3 from "../../services/uploadImageToS3.js";
 import categoryValidator from "../../validators/categoryValidator.js";
 

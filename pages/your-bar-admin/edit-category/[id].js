@@ -1,11 +1,17 @@
 import prisma from "../../../services/prismaClient.mjs";
-import CategoryForm from "../../../components/CategoryForm";
+import Form from "../../../components/Form";
 import AdminLayout from "../../../components/Layouts/AdminLayout";
+import normalizeCategory from "@/normalizers/frontend/normalizeCategory";
 
 export default function EditCategoryPage({ category }) {
+  const sanitizedCategory = normalizeCategory(category);
   return (
     <AdminLayout current="edit-category">
-      <CategoryForm category={category} />
+      <Form
+        formName="create_category"
+        destinationURL="/categories"
+        dataObject={sanitizedCategory}
+      />
     </AdminLayout>
   );
 }
