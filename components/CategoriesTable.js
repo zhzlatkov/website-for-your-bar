@@ -14,7 +14,7 @@ export default function CategoriesTable({ categories }) {
           <Link href="create-category">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-pirateGold-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pirateGold-700 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2 sm:w-auto"
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-pirateGold-600 px-4 py-2 text-sm font-medium text-pirateGold-100 shadow-sm hover:bg-pirateGold-700 hover:text-pirateGold-300 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2 sm:w-auto"
             >
               Add new category
             </button>
@@ -86,11 +86,11 @@ export default function CategoriesTable({ categories }) {
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-200">
                           {category.status ? (
-                            <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                            <span className="inline-flex rounded-full bg-green-800 px-2 text-xs font-semibold leading-5 text-green-100">
                               Available
                             </span>
                           ) : (
-                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                            <span className="inline-flex rounded-full bg-red-800 px-2 text-xs font-semibold leading-5 text-red-100">
                               Not Available
                             </span>
                           )}
