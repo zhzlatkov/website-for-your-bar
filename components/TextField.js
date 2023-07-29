@@ -19,7 +19,7 @@ export default function TextField({ formName, fieldName, value, onChange }) {
           name={fieldName}
           id={formName + "_" + fieldName}
           minLength="1"
-          maxLength="40"
+          maxLength="1000"
           value={value}
           onChange={onTextFieldChange}
         />

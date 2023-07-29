@@ -18,13 +18,20 @@ export default function AdminLayout({ current, children }) {
   const yourBar = [
     {
       id: 1,
+      name: "Settings",
+      href: "/your-bar-admin/settings",
+      initial: "S",
+      current: current === "settings",
+    },
+    {
+      id: 2,
       name: "Categories",
       href: "/your-bar-admin/categories",
       initial: "C",
       current: current === "categories",
     },
     {
-      id: 2,
+      id: 3,
       name: "Products",
       href: "/your-bar-admin/products",
       initial: "P",
