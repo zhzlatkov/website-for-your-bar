@@ -82,16 +82,25 @@ export default function AdminSidebar({
                                 href={item.href}
                                 className={
                                   (item.current
-                                    ? "bg-shark-950 text-pirateGold-200"
-                                    : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-700") +
-                                  "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                    ? "bg-shark-800"
+                                    : "hover:bg-shark-800") +
+                                  " group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                 }
                               >
                                 <item.icon
-                                  className="h-6 w-6 shrink-0"
                                   aria-hidden="true"
+                                  className="text-pirateGold-400 h-6 w-6 shrink-0"
                                 />
-                                {item.name}
+                                <h1
+                                  className={
+                                    (item.current
+                                      ? " text-pirateGold-200"
+                                      : "text-pirateGold-400") +
+                                    " hover:text-pirateGold-200"
+                                  }
+                                >
+                                  {item.name}
+                                </h1>
                               </Link>
                             </li>
                           ))}
@@ -102,29 +111,29 @@ export default function AdminSidebar({
                           Your Bar
                         </div>
                         <ul role="list" className="-mx-2 mt-2 space-y-1">
-                          {yourBar.map((page) => (
-                            <li key={page.name}>
+                          {yourBar.map((item) => (
+                            <li key={item.name}>
                               <Link
-                                href={page.href}
+                                href={item.href}
                                 className={
-                                  (page.current
+                                  (item.current
                                     ? "bg-shark-800 text-pirateGold-200"
                                     : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                 }
                               >
                                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-shark-800 text-[0.625rem] font-medium text-pirateGold-400 group-hover:text-pirateGold-200">
-                                  {page.initial}
+                                  {item.initial}
                                 </span>
                                 <span
                                   className={
                                     "truncate " +
-                                    (!page.current
+                                    (!item.current
                                       ? ""
                                       : "text-pirateGold-200 group-hover:text-pirateGold-100")
                                   }
                                 >
-                                  {page.name}
+                                  {item.name}
                                 </span>
                               </Link>
                             </li>
