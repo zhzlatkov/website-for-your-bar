@@ -19,10 +19,15 @@ export default async function createProduct(req, res) {
       .setHeader("Allow", "POST")
       .send({ message: "Wrong HTTP Request Method" });
   }
+  console.log(req.body);
+  let sanitizedProduct;
+  try {
+    sanitizedProduct = normalizeProduct(req.body);
+  } catch (err) {
+    return res.status(400).send({ message: `${err.message}` });
+  }
 
-  const sanitizedProduct = normalizeProduct(req.body);
   const validatedProduct = await productValidator(sanitizedProduct, false);
-
   if (!validatedProduct.result) {
     return res.status(422).send({ message: `${validatedProduct.message}` });
   }
