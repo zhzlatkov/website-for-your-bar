@@ -11,7 +11,7 @@ export default function normalizeProduct(product) {
     image: String(product.photo).trim(),
   };
   if (product.id) {
-    sanitizedProduct.product.id = Number(product.id);
+    sanitizedProduct.id = Number(product.id);
   }
   return sanitizedProduct;
 }
