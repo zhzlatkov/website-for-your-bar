@@ -8,7 +8,7 @@ export default function EditCategoryPage({ category }) {
   return (
     <AdminLayout current="edit-category">
       <Form
-        formName="create_category"
+        formName="category"
         destinationURL="/categories"
         dataObject={sanitizedCategory}
       />

@@ -8,8 +8,8 @@ export default function CreateCategoryPage() {
     <>
       <AdminLayout current="create-category">
         <Form
-          formName="create_category"
-          destinationURL="/categories"
+          formName="category"
+          destinationURL="./categories"
           dataObject={sanitizedCategory}
         />
       </AdminLayout>
