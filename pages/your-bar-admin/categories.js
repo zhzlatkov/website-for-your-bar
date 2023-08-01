@@ -1,12 +1,16 @@
 import AdminLayout from "@/components/Layouts/AdminLayout";
 import prisma from "../../services/prismaClient.mjs";
-import CategoriesTable from "@/components/CategoriesTable";
+import Sheet from "@/components/Sheet";
 import generatePhotoUrl from "@/services/generatePhotoUrl.js";
+import normalizeCategory from "@/normalizers/frontend/normalizeCategory";
 
 export default function Categories({ categories }) {
+  const sanitizedCategories = categories.map((category) => {
+    return normalizeCategory(category);
+  });
   return (
     <AdminLayout current={"categories"}>
-      <CategoriesTable categories={categories}></CategoriesTable>
+      <Sheet sheetName="category" data={sanitizedCategories}></Sheet>
     </AdminLayout>
   );
 }
@@ -14,7 +18,7 @@ export default function Categories({ categories }) {
 export async function getServerSideProps() {
   let categories = await prisma.Categories.findMany();
   categories.map(
-    (category) => (category.photoPath = generatePhotoUrl(category.photoPath))
+    (category) => (category.image = generatePhotoUrl(category.image))
   );
   return {
     props: {
