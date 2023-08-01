@@ -8,7 +8,7 @@ export default function EditProductPage({ categories, product }) {
   return (
     <AdminLayout current="edit-product">
       <Form
-        formName={"create_product"}
+        formName={"product"}
         destinationURL={"/products"}
         dataObject={sanitizedProduct}
         relationData={{ name: "category", options: categories }}
