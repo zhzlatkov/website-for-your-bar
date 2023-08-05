@@ -1,4 +1,5 @@
 import prisma from "../../services/prismaClient.mjs";
+import generateRandomString from "../../calls/generateRandomString.js";
 import bcrypt from "bcrypt";
 
 export default async function login(req, res) {
@@ -20,9 +21,9 @@ export default async function login(req, res) {
   });
 
   if (reqCount > 5) {
-    return res
-      .status(429)
-      .send({ message: "Please wait another 60 seconds before trying again" });
+    return res.status(429).send({
+      message: "Please wait another 60 seconds before trying again",
+    });
   }
 
   const user = await prisma.user.findFirst({
@@ -46,7 +47,7 @@ export default async function login(req, res) {
     });
   }
 
-  const authToken = generateToken();
+  const authToken = generateRandomString(64, true);
 
   await prisma.authToken.create({
     data: {
@@ -56,18 +57,4 @@ export default async function login(req, res) {
     },
   });
   return res.status(200).send({ authToken });
-}
-
-function generateToken(len = 64) {
-  const alphameric =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()+=-_";
-
-  let token = [];
-
-  for (let i = 0; i < len; i++) {
-    let index = Math.floor(Math.random() * alphameric.length);
-    token.push(alphameric.charAt(index));
-  }
-
-  return token.join("");
 }
