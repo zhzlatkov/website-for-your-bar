@@ -8,7 +8,7 @@ export default function ProductComponent({ product }) {
       <div className="m-auto mt-2 flex max-w-6xl flex-col items-center gap-x-8 gap-y-4 px-6 sm:gap-y-8 md:px-8 lg:flex-row lg:items-stretch lg:min-h-[520px]">
         <div className="h-96 w-full max-w-2xl md:w-96 lg:h-auto max-h-[65%] flex-none">
           <Image
-            src={product.photoPath}
+            src={product.image}
             alt={product.name}
             classNameRoot="h-full xl:mx-0"
             classNameImage="inset-0 h-full w-full rounded-md bg-shark-800 object-cover object-top border-pirateGold-200 border-4"

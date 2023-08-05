@@ -20,7 +20,7 @@ export default function CategoryList({ categories }) {
           >
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-pirateGold-400 xl:aspect-h-8 xl:aspect-w-7">
               <Image
-                src={category.photoPath}
+                src={category.image}
                 alt={category.name}
                 classNameRoot="h-72 w-full object-cover object-center group-hover:opacity-75 lg:h-96"
                 classNameImage="object-cover"

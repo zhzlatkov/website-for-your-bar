@@ -30,9 +30,9 @@ export async function getServerSideProps() {
     include: { products: true },
   });
   categories.map((category) => {
-    category.photoPath = generatePhotoUrl(category.photoPath);
+    category.image = generatePhotoUrl(category.image);
     category.products.map(
-      (product) => (product.photoPath = generatePhotoUrl(product.photoPath))
+      (product) => (product.image = generatePhotoUrl(product.image))
     );
     return;
   });
