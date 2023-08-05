@@ -2,9 +2,7 @@ import prisma from "../../services/prismaClient.mjs";
 import PageLayout from "@/components/Layouts/PageLayout.js";
 import generatePhotoUrl from "@/services/generatePhotoUrl.js";
 import Separator from "@/components/Separator";
-import MenuCategory from "@/components/MenuCategory";
 import MenuProduct from "@/components/MenuProduct";
-import MenuProducts from "@/components/MenuProduct";
 
 export default function Category({ category }) {
   return (
@@ -34,9 +32,9 @@ export async function getServerSideProps({ query }) {
     where: { name },
     include: { products: true },
   });
-  category.photoPath = generatePhotoUrl(category.photoPath);
+  category.image = generatePhotoUrl(category.image);
   category.products.map(
-    (product) => (product.photoPath = generatePhotoUrl(product.photoPath))
+    (product) => (product.image = generatePhotoUrl(product.image))
   );
   return {
     props: {

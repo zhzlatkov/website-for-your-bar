@@ -17,7 +17,7 @@ export async function getServerSideProps() {
   let categories = await prisma.categories.findMany();
   categories = categories.filter((category) => category.status);
   categories.map(
-    (category) => (category.photoPath = generatePhotoUrl(category.photoPath))
+    (category) => (category.image = generatePhotoUrl(category.image))
   );
   return {
     props: {
