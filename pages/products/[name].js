@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
         permanent: false,
       },
     };
-  product.photoPath = generatePhotoUrl(product.photoPath);
+  product.image = generatePhotoUrl(product.image);
   return {
     props: {
       product,
