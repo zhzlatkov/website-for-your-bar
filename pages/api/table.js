@@ -25,12 +25,12 @@ export default async function updateTable(req, res) {
     tableSchema
   );
 
-  if (validatedTable.result) {
+  if (!validatedTable.result) {
     return res.status(422).send({ message: `${validatedTable.message}` });
   }
 
   try {
-    if (sanitizedTable.hasOwnProperty("id")) {
+    if (!sanitizedTable.id) {
       sanitizedTable.url = "/tables/" + generateRandomString();
       await prisma.tables.create({
         data: {
@@ -50,7 +50,7 @@ export default async function updateTable(req, res) {
     return res
       .status(200)
       .send({ message: "Successfully created/updated a Table." });
-  } catch (e) {
+  } catch (err) {
     return res.status(400).send({
       message: `${err.message}`,
     });

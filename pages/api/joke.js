@@ -25,7 +25,7 @@ export default async function updateJoke(req, res) {
   }
 
   try {
-    if (sanitizedJoke.hasOwnProperty("id")) {
+    if (!sanitizedJoke.id) {
       await prisma.jokes.create({
         data: {
           ...sanitizedJoke,
@@ -44,7 +44,7 @@ export default async function updateJoke(req, res) {
     return res
       .status(200)
       .send({ message: "Successfully created/updated a Joke." });
-  } catch (e) {
+  } catch (err) {
     return res.status(400).send({
       message: `${err.message}`,
     });

@@ -29,7 +29,7 @@ export default async function updateService(req, res) {
   }
 
   try {
-    if (sanitizedService.hasOwnProperty("id")) {
+    if (!sanitizedService.id) {
       await prisma.services.create({
         data: {
           ...sanitizedService,
@@ -46,7 +46,7 @@ export default async function updateService(req, res) {
       });
     }
     return res.status(200).send({ message: "Successfully updated a Service." });
-  } catch (e) {
+  } catch (err) {
     return res.status(400).send({
       message: `${err.message}`,
     });

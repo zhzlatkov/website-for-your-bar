@@ -40,7 +40,7 @@ export default async function updateSocialMedia(req, res) {
     return res
       .status(200)
       .json({ message: "Social Media updated successfully" });
-  } catch (e) {
-    return res.status(404).json({ error: e.message });
+  } catch (err) {
+    return res.status(404).json({ error: err.message });
   }
 }

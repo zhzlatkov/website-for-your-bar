@@ -48,7 +48,7 @@ export default async function createCategory(req, res) {
   }
 
   try {
-    if (sanitizedCategory.hasOwnProperty("id")) {
+    if (!sanitizedCategory.id) {
       await prisma.categories.create({
         data: {
           ...sanitizedCategory,

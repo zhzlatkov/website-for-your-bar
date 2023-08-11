@@ -29,7 +29,7 @@ export default async function updatedFunFact(req, res) {
   }
 
   try {
-    if (sanitizeddFunFact.hasOwnProperty("id")) {
+    if (!sanitizeddFunFact.id) {
       await prisma.funFacts.create({
         data: {
           ...sanitizeddFunFact,
@@ -48,7 +48,7 @@ export default async function updatedFunFact(req, res) {
     return res
       .status(200)
       .send({ message: "Successfully created/updated a dFunFact." });
-  } catch (e) {
+  } catch (err) {
     return res.status(400).send({
       message: `${err.message}`,
     });

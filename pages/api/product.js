@@ -48,7 +48,7 @@ export default async function createProduct(req, res) {
   }
 
   try {
-    if (sanitizedProduct.hasOwnProperty("id")) {
+    if (!sanitizedProduct.id) {
       await prisma.products.create({
         data: {
           ...sanitizedProduct,
