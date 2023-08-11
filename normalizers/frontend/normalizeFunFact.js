@@ -1,6 +1,6 @@
 export default function normalizeFunFact(funFact = null) {
   const sanitizedFunFact = {
-    text: funFact ? String(funFact.text).trim().toLowerCase : "",
+    text: funFact ? String(funFact.text).trim().toLowerCase() : "",
     status: funFact ? Bolean(funFact.status) : false,
   };
 

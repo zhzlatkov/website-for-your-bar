@@ -1,8 +1,9 @@
 export default function normalizeTable(table = null) {
   const sanitizedTable = {
-    name: table ? String(table.name).trim().toLowerCase : "",
+    id: table && table.id ? Number(table.id) : undefined,
+    name: table ? String(table.name).trim().toLowerCase() : "",
     seats: table ? Number(table.seats) : 0,
-    status: table ? Bolean(table.status) : false,
+    status: table ? Boolean(table.status) : false,
   };
   return sanitizedTable;
 }

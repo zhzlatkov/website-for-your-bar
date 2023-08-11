@@ -1,5 +1,6 @@
 export default function normalizeProduct(product) {
   let sanitizedProduct = {
+    id: product && product.id ? Number(product.id) : undefined,
     name: String(product.product_name).trim().toLowerCase(),
     price: Number(product.price),
     quantity: Number(product.quantity),

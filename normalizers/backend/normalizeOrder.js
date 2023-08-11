@@ -1,9 +1,10 @@
 export default function normalizeOrder(order = null) {
   const sanitizedOrder = {
-    name: order ? String(order.name).trim().toLowerCase : "",
-    order_code: order ? Number(order.orderCode) : 0,
+    id: order && order.id ? Number(order.id) : undefined,
+    name: order ? String(order.name).trim().toLowerCase() : "",
+    orderCode: order ? Number(order.order_code) : 0,
     tableID: order ? Number(order.table) : 0,
-    order_status: order ? Bolean(order.isClosed) : false,
+    isClosed: order ? Bolean(order.order_status) : false,
   };
   if (order.id) {
     sanitizedOrder.id = Number(order.id);
