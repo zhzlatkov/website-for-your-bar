@@ -21,7 +21,7 @@ export default function MenuCategory({ category, table, settings }) {
               </span>
             </Disclosure.Button>
           </dt>
-          <Disclosure.Panel as="dd" className="mt-2">
+          <Disclosure.Panel as="dd">
             {category.products.map((product) => (
               <MenuProduct
                 key={product.name}

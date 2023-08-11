@@ -31,7 +31,10 @@ export default function DymaicForm({
     setIsLoading(true);
     setError({ status: false });
 
-    let url = `/api/${formName.replace("_", "-")}`;
+    let pathToSubmit = formName.split("_");
+    pathToSubmit.shift();
+    let url = `/api/${pathToSubmit.join("-")}`;
+    console.log(url);
     let method = "POST";
 
     if (data?.id) {

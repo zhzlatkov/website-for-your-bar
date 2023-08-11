@@ -35,7 +35,7 @@ export default function MenuProducts({ product, table, settings }) {
           <h1 className="capitalize text-pirateGold-400 grow font-semibold">
             {product.name}
           </h1>
-          <h1 className="text-shark-200 whitespace-nowrap mr-4 font-light">
+          <h1 className="text-shark-200 whitespace-nowrap mx-4 font-light">
             {product.quantity} {product.quantityType}.
           </h1>
           <h1 className="text-yellow-400 whitespace-nowrap font-semibold">
@@ -45,7 +45,7 @@ export default function MenuProducts({ product, table, settings }) {
         <button
           key={"order" + "_" + product.name}
           className={
-            "whitespace-nowrap ml-2 px-2 py-1 text-sm text-shark-200 border-2 rounded-sm border-pirateGold-400 hover:text-pirateGold-400 hover:border-shark-400 " +
+            "whitespace-nowrap max-h-8 m-auto ml-2 px-2 py-1 text-sm text-shark-200 uppercase border-2 rounded-sm border-pirateGold-400 hover:text-pirateGold-400 hover:border-shark-400 " +
             (!table.status && !settings.statusOrdering ? "" : "hidden")
           }
         >

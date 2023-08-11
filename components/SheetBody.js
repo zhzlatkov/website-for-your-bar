@@ -9,27 +9,25 @@ export default function SheetBody({ sheetName, data }) {
           {Object.keys(row).map((property) => {
             if (property.includes("photo")) {
               return (
-                <>
-                  <td
-                    key={sheetName + "_" + property}
-                    className="whitespace-nowrap flex items-center py-4 pl-4 pr-3 text-sm sm:pl-6"
+                <td
+                  key={sheetName + "_" + property}
+                  className="whitespace-nowrap flex items-center py-4 pl-4 pr-3 text-sm sm:pl-6"
+                >
+                  <div className="h-10 w-10 flex-shrink-0">
+                    <Image
+                      classNameRoot="h-10 w-10"
+                      classNameImage="object-cover rounded-sm"
+                      src={row.photo}
+                      alt="Image"
+                    />
+                  </div>
+                  <Link
+                    href={row.photo}
+                    className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400"
                   >
-                    <div className="h-10 w-10 flex-shrink-0">
-                      <Image
-                        classNameRoot="h-10 w-10"
-                        classNameImage="object-cover rounded-sm"
-                        src={row.photo}
-                        alt="Image"
-                      />
-                    </div>
-                    <Link
-                      href={row.photo}
-                      className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400"
-                    >
-                      {`${row.photo.substring(8, 35)}...`}
-                    </Link>
-                  </td>
-                </>
+                    {`${row.photo.substring(8, 35)}...`}
+                  </Link>
+                </td>
               );
             }
             if (property === "status") {
