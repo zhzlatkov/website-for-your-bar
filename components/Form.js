@@ -140,9 +140,7 @@ export default function DymaicForm({
           return;
         }
       })}
-      {!error.status ? (
-        ""
-      ) : (
+      {!error.status ? null : (
         <div className="sm:flex sm:items-center sm:gap-4 justify-end">
           <label
             htmlFor="category-name"

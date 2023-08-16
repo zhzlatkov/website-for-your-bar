@@ -32,6 +32,14 @@ export async function getServerSideProps({ query }) {
     where: { name },
     include: { products: true },
   });
+  if (!category) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/categories",
+      },
+    };
+  }
   category.image = generatePhotoUrl(category.image);
   category.products.map(
     (product) => (product.image = generatePhotoUrl(product.image))
