@@ -24,7 +24,7 @@ export async function getServerSideProps({ query }) {
   if (!product)
     return {
       redirect: {
-        destination: "/categories",
+        destination: "/menu",
         permanent: false,
       },
     };
