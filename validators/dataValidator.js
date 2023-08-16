@@ -36,28 +36,28 @@ export default async function dataValidator(dataType, sanitizedData, schema) {
         isDataNameExists = await prisma.categories.findFirst(where);
         break;
       case "product":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.products.findFirst(where);
         break;
       case "order":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.orders.findFirst(where);
         break;
       case "table":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.tables.findFirst(where);
         break;
       case "joke":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.jokes.findFirst(where);
         break;
       case "funFact":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.funFacts.findFirst(where);
         break;
       case "settings":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.settings.findFirst(where);
         break;
       case "service":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.services.findFirst(where);
         break;
       case "socialMedia":
-        isDataNameExists = await prisma.categories.findFirst(where);
+        isDataNameExists = await prisma.socialMedias.findFirst(where);
         break;
       default:
         return {
