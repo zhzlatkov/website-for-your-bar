@@ -84,7 +84,7 @@ export default function AdminSidebar({
                                   (item.current
                                     ? "bg-shark-800"
                                     : "hover:bg-shark-800") +
-                                  " group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                  " group flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold"
                                 }
                               >
                                 <item.icon
@@ -119,7 +119,7 @@ export default function AdminSidebar({
                                   (item.current
                                     ? "bg-shark-800 text-pirateGold-200"
                                     : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
-                                  "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                  "group flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold"
                                 }
                               >
                                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-shark-800 text-[0.625rem] font-medium text-pirateGold-400 group-hover:text-pirateGold-200">
@@ -169,7 +169,7 @@ export default function AdminSidebar({
                           (page.current
                             ? "bg-shark-800 text-pirateGold-200"
                             : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
-                          "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          "group flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold"
                         }
                       >
                         <page.icon
@@ -195,7 +195,7 @@ export default function AdminSidebar({
                           (page.current
                             ? "bg-shark-800 text-pirateGold-200"
                             : "text-pirateGold-400 hover:text-pirateGold-200 hover:bg-shark-800") +
-                          "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          "group flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold"
                         }
                       >
                         <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-shark-800 text-[0.625rem] font-medium text-pirateGold-400 group-hover:text-pirateGold-200">

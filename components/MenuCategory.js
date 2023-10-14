@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import MenuProduct from "./MenuProduct";
 
-export default function MenuCategory({ category, table, settings }) {
+export default function MenuCategory({ category }) {
   return (
     <Disclosure as="div" key={category.name} className="pt-6">
       {({ open }) => (
@@ -23,12 +23,7 @@ export default function MenuCategory({ category, table, settings }) {
           </dt>
           <Disclosure.Panel as="dd">
             {category.products.map((product) => (
-              <MenuProduct
-                key={product.name}
-                product={product}
-                table={table}
-                settings={settings}
-              ></MenuProduct>
+              <MenuProduct key={product.name} product={product}></MenuProduct>
             ))}
           </Disclosure.Panel>
         </>

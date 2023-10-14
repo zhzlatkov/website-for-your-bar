@@ -6,28 +6,13 @@ import {
   faIcons,
 } from "@fortawesome/free-solid-svg-icons";
 
-const services = [
-  {
-    name: "Private Events",
-    description:
-      "From an office party to an at-home celebration, we can help with your next event. Please fill out the form below and we’ll be in touch soon!",
-    icon: faChampagneGlasses,
-  },
-  {
-    name: "Food & Drinks",
-    description:
-      "Our culinary team provides a seamless blend of traditional and modern cuisine to compliment your evening with the special tastes of food & drinks!",
-    icon: faMartiniGlassCitrus,
-  },
-  {
-    name: "Special Events",
-    description:
-      "Every month we organize different special events that require a personal invitation with the presence of different special guests!",
-    icon: faIcons,
-  },
-];
-
-export default function Services() {
+export default function Services({
+  headingOne,
+  headingTwo,
+  shortDescription,
+  services,
+}) {
+  const icons = { faChampagneGlasses, faMartiniGlassCitrus, faIcons };
   return (
     <div className="relative isolate overflow-hidden bg-shark-900 pt-2 pb-4 sm:py-12">
       <Image
@@ -56,39 +41,39 @@ export default function Services() {
       </div>
       <div className="mx-auto w-11/12 max-w-6xl">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl my-6 font-bold tracking-tight text-pirateGold-500 text-5xl sm:text-6xl">
-            BAR & DINNER
+          <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl sm:text-6xl">
+            {headingOne}
           </h2>
           <h4 className="text-2xl my-2 font-bold underline decoration-pirateGold-500 decoration-8 [text-decoration-skip-ink:none] underline-offset-[-3px] tracking-wide text-pirateGold-100 text-3xl sm:text-4xl">
-            Brunch & Burger after 4 p.m.
+            {headingTwo}
           </h4>
           <p className="my-6 text-lg leading-8 text-pirateGold-100">
-            Out bar is more than just a place to grab a drink; our bar is a
-            space where people can unwind, socialize, and enjoy themselves!
-            Currently the best cocktail bar in Europe, number 1 one in Germany!
+            {shortDescription}
           </p>
         </div>
         <div className="mx-auto my-6 grid max-w-2xl grid-cols-1 gap-4 sm:my-10 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
-          {services.map((card) => (
-            <div
-              key={card.name}
-              className="flex items-center sm:items-start gap-x-4 rounded-xl bg-shark-900 p-7 sm:p-8 opacity-80"
-            >
-              <FontAwesomeIcon
-                icon={card.icon}
-                size="2xl"
-                className="mx-auto mr-1 sm:m-auto sm:mr-4 h-8 w-8 flex-none text-pirateGold-500"
-              />
-              <div className=" leading-7">
-                <h3 className="font-medium sm:font-semi-bold text-pirateGold-200">
-                  {card.name}
-                </h3>
-                <p className="text-pirateGold-500 text-sm">
-                  {card.description}
-                </p>
+          {services.map((card) => {
+            return (
+              <div
+                key={card.name}
+                className="flex items-center sm:items-start gap-x-4 rounded-xl bg-shark-900 p-7 sm:p-8 opacity-80"
+              >
+                <FontAwesomeIcon
+                  icon={icons[card.icon]}
+                  size="2xl"
+                  className="mx-auto mr-1 sm:m-auto sm:mr-4 h-8 w-8 flex-none text-pirateGold-500"
+                />
+                <div className=" leading-7">
+                  <h3 className="font-medium sm:font-semi-bold text-pirateGold-200">
+                    {card.name}
+                  </h3>
+                  <p className="text-pirateGold-500 text-sm">
+                    {card.information}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

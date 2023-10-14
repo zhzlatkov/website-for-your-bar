@@ -11,7 +11,7 @@ export default function ProductComponent({ product }) {
             src={product.image}
             alt={product.name}
             classNameRoot="h-full xl:mx-0"
-            classNameImage="inset-0 h-full w-full rounded-md bg-shark-800 object-cover object-top border-pirateGold-200 border-4"
+            classNameImage="inset-0 h-full w-full rounded-sm bg-shark-800 object-cover object-top border-pirateGold-200 border-4"
           />
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function ProductComponent({ product }) {
             </h2>
             <div className="flex items-center">
               <p className="text-lg text-pirateGold-200 sm:text-xl">
-                {product.price}
+                ${product.price.toFixed(2)}
               </p>
               <div className="ml-4 border-l flex border-gray-300">
                 <p className="ml-2 text-sm text-pirateGold-400">
