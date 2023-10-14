@@ -4,7 +4,7 @@ const productSchema = object({
   id: number(),
   name: string().required(),
   categoryId: number().required().positive().integer(),
-  price: number().required().positive().integer(),
+  price: number().required().positive(),
   quantity: number().required().positive().integer(),
   quantityType: string(),
   shortDescription: string().required(),
