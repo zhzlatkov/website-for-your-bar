@@ -1,5 +1,6 @@
 export default function normalizeSetting(settings = null) {
   const sanitizedSettings = {
+    id: settings ? Number(settings.id) : undefined,
     name: settings ? String(settings.name).trim() : "",
     logo: settings ? String(settings.logo).trim() : "",
     email: settings ? String(settings.email).trim() : "",
@@ -14,5 +15,13 @@ export default function normalizeSetting(settings = null) {
     jokes_image: settings ? String(settings.jokesImage).trim() : "",
     status_ordering: settings ? Boolean(settings.statusOrdering) : false,
   };
+  if (settings.funFacts?.length > 0) {
+    sanitizedSettings.fun_facts = settings.funFacts.map((funFact) =>
+      normalizeFunFact(funFact)
+    );
+  }
+  if (settings.jokes?.length > 0) {
+    sanitizedSettings.jokes = settings.jokes;
+  }
   return sanitizedSettings;
 }

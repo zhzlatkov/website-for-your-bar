@@ -1,3 +1,5 @@
+import normalizeProduct from "./normalizeProduct";
+
 export default function normalizeCategory(category) {
   let sanitizedCategory = {
     id: category && category.id ? Number(category.id) : undefined,
@@ -8,6 +10,11 @@ export default function normalizeCategory(category) {
   };
   if (category.id) {
     sanitizedCategory.id = Number(category.id);
+  }
+  if (category.products?.length > 0) {
+    sanitizedCategory.products = category.products.map((product) =>
+      normalizeProduct(product)
+    );
   }
   return sanitizedCategory;
 }

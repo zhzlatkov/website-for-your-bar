@@ -1,7 +1,8 @@
 export default function normalizeFunFact(funFact = null) {
   const sanitizedFunFact = {
-    text: funFact ? String(funFact.text).trim().toLowerCase() : "",
-    status: funFact ? Bolean(funFact.status) : false,
+    id: funFact ? Number(funFact.id) : undefined,
+    text: funFact ? String(funFact.text).trim() : "",
+    status: funFact ? Boolean(funFact.status) : false,
   };
 
   return sanitizedFunFact;
