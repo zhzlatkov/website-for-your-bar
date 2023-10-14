@@ -24,53 +24,50 @@ export default async function dataValidator(dataType, sanitizedData, schema) {
   let isDataNameUnique = true;
   let isDataNameExists;
 
-  if (sanitizedData.hasOwnProperty("name")) {
-    const where = {
-      where: {
-        name: sanitizedData.name,
-      },
-    };
-
-    switch (dataType) {
-      case "category":
-        isDataNameExists = await prisma.categories.findFirst(where);
-        break;
-      case "product":
-        isDataNameExists = await prisma.products.findFirst(where);
-        break;
-      case "order":
-        isDataNameExists = await prisma.orders.findFirst(where);
-        break;
-      case "table":
-        isDataNameExists = await prisma.tables.findFirst(where);
-        break;
-      case "joke":
-        isDataNameExists = await prisma.jokes.findFirst(where);
-        break;
-      case "funFact":
-        isDataNameExists = await prisma.funFacts.findFirst(where);
-        break;
-      case "settings":
-        isDataNameExists = await prisma.settings.findFirst(where);
-        break;
-      case "service":
-        isDataNameExists = await prisma.services.findFirst(where);
-        break;
-      case "socialMedia":
-        isDataNameExists = await prisma.socialMedias.findFirst(where);
-        break;
-      default:
-        return {
-          result: false,
-          message: "There is not such a type of data",
-        };
-    }
+  function checkIsDataNameUnique(sanitizedData, isDataNameExists) {
     if (sanitizedData.hasOwnProperty("id")) {
       isDataNameUnique = !Boolean(isDataNameExists)
         ? true
         : isDataNameExists.id === Number(sanitizedData.id);
     } else {
       isDataNameUnique = !Boolean(isDataNameExists);
+    }
+  }
+
+  if (sanitizedData.hasOwnProperty("name")) {
+    const where = {
+      where: {
+        name: sanitizedData.name,
+      },
+    };
+    switch (dataType) {
+      case "category":
+        isDataNameExists = await prisma.categories.findFirst(where);
+        checkIsDataNameUnique(sanitizedData, isDataNameExists);
+        break;
+      case "product":
+        isDataNameExists = await prisma.products.findFirst(where);
+        checkIsDataNameUnique(sanitizedData, isDataNameExists);
+        break;
+      case "table":
+        isDataNameExists = await prisma.tables.findFirst(where);
+        checkIsDataNameUnique(sanitizedData, isDataNameExists);
+        break;
+      case "settings":
+        isDataNameExists = await prisma.settings.findFirst({});
+        break;
+      case "service":
+        isDataNameExists = await prisma.services.findFirst(where);
+        break;
+      case "socialMedia":
+        isDataNameExists = await prisma.socialMedias.findFirst(where);
+        checkIsDataNameUnique(sanitizedData, isDataNameExists);
+        break;
+      default:
+        return {
+          result: false,
+          message: "There is not such a type of data",
+        };
     }
   }
 
