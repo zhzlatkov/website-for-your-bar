@@ -8,7 +8,7 @@ export default function CreateProductPage({ categories }) {
 
   return (
     <>
-      <AdminLayout current="create-product">
+      <AdminLayout current={"create-product"}>
         <Form
           formName={"create_product"}
           destinationURL={"/products"}

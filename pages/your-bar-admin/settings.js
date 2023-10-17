@@ -16,11 +16,13 @@ export default function Settings({ settings, socialMedias, services }) {
   return (
     <AdminLayout current={"settings"}>
       <div>
+        <h1 className="text-2xl text-pirateGold-400">General Settings</h1>
         <Form
           formName={"settings"}
           destinationURL={"/"}
           dataObject={sanitizedSettings}
         />
+        <h1 className="text-xl text-pirateGold-400">Social Medias</h1>
         {sanitizedSocialMedias.map((socialMedia) => {
           return (
             <>
@@ -32,6 +34,7 @@ export default function Settings({ settings, socialMedias, services }) {
             </>
           );
         })}
+        <h1 className="text-xl text-pirateGold-400">Services</h1>
         {sanitizedServices.map((service) => {
           return (
             <>

@@ -9,7 +9,7 @@ export default function Jokes({ jokes }) {
   });
   return (
     <AdminLayout current={"jokes"}>
-      <Sheet sheetName="joke" data={sanitizedJokes}></Sheet>
+      <Sheet sheetName={"joke"} data={sanitizedJokes}></Sheet>
     </AdminLayout>
   );
 }

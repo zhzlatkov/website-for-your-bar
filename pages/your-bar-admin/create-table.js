@@ -7,10 +7,10 @@ export default function CreatTablePage() {
 
   return (
     <>
-      <AdminLayout current="create-table">
+      <AdminLayout current={"create-table"}>
         <Form
           formName={"create_table"}
-          destinationURL={"./tables"}
+          destinationURL={"/tables"}
           dataObject={sanitizedTable}
         />
       </AdminLayout>

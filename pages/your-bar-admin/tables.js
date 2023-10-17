@@ -9,7 +9,7 @@ export default function Tables({ tables }) {
   });
   return (
     <AdminLayout current={"tables"}>
-      <Sheet sheetName="table" data={sanitizedTables}></Sheet>
+      <Sheet sheetName={"table"} data={sanitizedTables}></Sheet>
     </AdminLayout>
   );
 }

@@ -9,14 +9,14 @@ export default function Orders({ orders }) {
   });
   return (
     <AdminLayout current={"orders"}>
-      <Sheet sheetName="order" data={sanitizedOrders}></Sheet>
+      <Sheet sheetName={"order"} data={sanitizedOrders}></Sheet>
     </AdminLayout>
   );
 }
 
 export async function getServerSideProps() {
-  let orders = await prisma.Orders.findMany({
-    include: { products: true, table: true },
+  let orders = await prisma.orders.findMany({
+    include: { orderedProducts: true, table: true },
   });
 
   return {

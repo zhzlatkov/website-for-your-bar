@@ -6,10 +6,10 @@ export default function CreateCategoryPage() {
   const sanitizedCategory = normalizeCategory();
   return (
     <>
-      <AdminLayout current="create-category">
+      <AdminLayout current={"create-category"}>
         <Form
-          formName="category"
-          destinationURL="./categories"
+          formName={"category"}
+          destinationURL={"/categories"}
           dataObject={sanitizedCategory}
         />
       </AdminLayout>

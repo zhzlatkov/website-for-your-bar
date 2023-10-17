@@ -8,8 +8,8 @@ export default function FunFacts({ funFacts }) {
     return normalizeFunFact(funFact);
   });
   return (
-    <AdminLayout current={"funFacts"}>
-      <Sheet sheetName="funFact" data={sanitizedFunFacts}></Sheet>
+    <AdminLayout current={"fun-facts"}>
+      <Sheet sheetName={"fun-fact"} data={sanitizedFunFacts}></Sheet>
     </AdminLayout>
   );
 }

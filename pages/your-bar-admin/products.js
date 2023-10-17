@@ -10,7 +10,7 @@ export default function Products({ products }) {
   });
   return (
     <AdminLayout current={"products"}>
-      <Sheet sheetName="product" data={sanitizedProducts}></Sheet>
+      <Sheet sheetName={"product"} data={sanitizedProducts}></Sheet>
     </AdminLayout>
   );
 }

@@ -1,7 +1,7 @@
 import prisma from "../../../services/prismaClient.mjs";
 import Form from "../../../components/Form";
 import AdminLayout from "../../../components/Layouts/AdminLayout";
-import normalizeFunFact from "@/normalizers/normalizeFunFact";
+import normalizeFunFact from "@/normalizers/frontend/normalizeFunFact";
 
 export default function EditFunFactPage({ funFact }) {
   const sanitizedFunFact = normalizeFunFact(funFact);

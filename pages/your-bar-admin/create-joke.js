@@ -7,10 +7,10 @@ export default function CreatJokePage() {
 
   return (
     <>
-      <AdminLayout current="create-joke">
+      <AdminLayout current={"create-joke"}>
         <Form
           formName={"create_joke"}
-          destinationURL={"./jokes"}
+          destinationURL={"/jokes"}
           dataObject={sanitizedJoke}
         />
       </AdminLayout>

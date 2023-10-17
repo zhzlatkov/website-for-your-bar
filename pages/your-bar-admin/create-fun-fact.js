@@ -1,16 +1,16 @@
 import Form from "../../components/Form";
 import AdminLayout from "../../components/Layouts/AdminLayout";
-import normalizeFunFact from "@/normalizers/normalizeFunFact";
+import normalizeFunFact from "@/normalizers/frontend/normalizeFunFact";
 
 export default function CreatFunFactPage() {
   const sanitizedFunFact = normalizeFunFact();
 
   return (
     <>
-      <AdminLayout current="create-fun-fact">
+      <AdminLayout current={"create-fun-fact"}>
         <Form
           formName={"create_fun_fact"}
-          destinationURL={"./fun-facts"}
+          destinationURL={"/fun-facts"}
           dataObject={sanitizedFunFact}
         />
       </AdminLayout>
