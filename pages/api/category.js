@@ -14,10 +14,10 @@ export const config = {
 };
 
 export default async function createCategory(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 

@@ -1,13 +1,13 @@
 import prisma from "../../services/prismaClient.mjs";
-import normalizedFunFact from "../../normalizers/backend/normalizedFunFact.js";
+import normalizedFunFact from "../../normalizers/backend/normalizeFunFact.js";
 import funFactSchema from "../../schemas/funFactSchema.js";
 import dataValidator from "../../validators/dataValidator.js";
 
 export default async function updatedFunFact(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -24,7 +24,7 @@ export default async function updatedFunFact(req, res) {
     funFactSchema
   );
 
-  if (validateddFunFact.result) {
+  if (!validateddFunFact.result) {
     return res.status(422).send({ message: `${validateddFunFact.message}` });
   }
 
@@ -47,7 +47,7 @@ export default async function updatedFunFact(req, res) {
     }
     return res
       .status(200)
-      .send({ message: "Successfully created/updated a dFunFact." });
+      .send({ message: "Successfully created/updated a FunFact." });
   } catch (err) {
     return res.status(400).send({
       message: `${err.message}`,

@@ -14,10 +14,10 @@ export const config = {
 };
 
 export default async function createProduct(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -36,13 +36,25 @@ export default async function createProduct(req, res) {
   if (!validatedProduct.result) {
     return res.status(422).send({ message: `${validatedProduct.message}` });
   }
+
+  const isCategoryExist = await prisma.categories.findFirst({
+    where: {
+      id: sanitizedProduct.categoryId,
+    },
+  });
+
+  if (!isCategoryExist) {
+    return res.status(422).send({
+      message: `Category with ID:${sanitizedProduct.categoryId} is not exist.`,
+    });
+  }
   if (
     !sanitizedProduct.image.includes(sanitizedProduct.name) &&
     !sanitizedProduct.image.includes("/photos/")
   ) {
-    sanitizedProduct.product.image = await uploadImageToS3(
+    sanitizedProduct.image = await uploadImageToS3(
       sanitizedProduct.image,
-      sanitizedProduct.product.name,
+      sanitizedProduct.name,
       "products"
     );
   }

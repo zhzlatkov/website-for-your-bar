@@ -1,7 +1,7 @@
 import prisma from "../../services/prismaClient.mjs";
 import normalizeSettings from "../../normalizers/backend/normalizeSettings.js";
 import uploadImageToS3 from "../../services/uploadImageToS3.js";
-import setingsSchema from "../../schemas/setingsSchema.js";
+import settingsSchema from "../../schemas/settingsSchema.js";
 import dataValidator from "../../validators/dataValidator.js";
 
 export const config = {
@@ -14,10 +14,10 @@ export const config = {
 };
 
 export default async function createSettings(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -29,28 +29,41 @@ export default async function createSettings(req, res) {
   }
 
   const validatedSettings = await dataValidator(
-    "setings",
+    "settings",
     sanitizedSettings,
-    setingsSchema
+    settingsSchema
   );
   if (!validatedSettings.result) {
     return res.status(422).send({ message: `${validatedSettings.message}` });
   }
+
   if (
-    !sanitizedSettings.image.includes(sanitizedSettings.name) &&
-    !sanitizedSettings.image.includes("/photos/")
+    !sanitizedSettings.jokesImage.includes(sanitizedSettings.name) &&
+    !sanitizedSettings.jokesImage.includes("-jokes-image") &&
+    !sanitizedSettings.jokesImage.includes("/photos/")
   ) {
-    sanitizedSettings.setings.image = await uploadImageToS3(
-      sanitizedSettings.image,
-      sanitizedSettings.setings.name,
-      "setings"
+    sanitizedSettings.jokesImage = await uploadImageToS3(
+      sanitizedSettings.jokesImage,
+      sanitizedSettings.name + "-jokes-image",
+      "settings"
+    );
+  }
+  if (
+    !sanitizedSettings.logo.includes(sanitizedSettings.name) &&
+    !sanitizedSettings.logo.includes("/photos/") &&
+    !sanitizedSettings.logo.includes("-logo")
+  ) {
+    sanitizedSettings.logo = await uploadImageToS3(
+      sanitizedSettings.logo,
+      sanitizedSettings.name + "-logo",
+      "settings"
     );
   }
 
   try {
-    await prisma.setings.update({
+    await prisma.settings.update({
       where: {
-        id: sanitizedSettings.id,
+        id: 1,
       },
       data: {
         ...sanitizedSettings,
@@ -60,6 +73,7 @@ export default async function createSettings(req, res) {
       .status(200)
       .send({ message: "Successfully created/updated a Settings." });
   } catch (err) {
+    console.error(err);
     return res.status(400).send({
       message: `${err.message}`,
     });

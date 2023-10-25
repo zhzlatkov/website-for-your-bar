@@ -4,10 +4,10 @@ import serviceSchema from "../../schemas/serviceSchema.js";
 import dataValidator from "../../validators/dataValidator.js";
 
 export default async function updateService(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -24,7 +24,7 @@ export default async function updateService(req, res) {
     serviceSchema
   );
 
-  if (validatedService.result) {
+  if (!validatedService.result) {
     return res.status(422).send({ message: `${validatedService.message}` });
   }
 

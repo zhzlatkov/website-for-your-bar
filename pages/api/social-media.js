@@ -4,10 +4,10 @@ import socialMediaSchema from "../../schemas/socialMediaSchema.js";
 import dataValidator from "../../validators/dataValidator.js";
 
 export default async function updateSocialMedia(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -24,7 +24,7 @@ export default async function updateSocialMedia(req, res) {
     socialMediaSchema
   );
 
-  if (validatedSocialMedia.result) {
+  if (!validatedSocialMedia.result) {
     return res.status(422).send({ message: `${validatedSocialMedia.message}` });
   }
 
