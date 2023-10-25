@@ -16,7 +16,7 @@ export default function Sheet({ sheetName, data }) {
           <Link href={`create-${sheetName}`}>
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-pirateGold-600 px-4 py-2 text-sm font-medium text-pirateGold-100 capitalize shadow-sm hover:bg-pirateGold-700 hover:text-pirateGold-300 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2 sm:w-auto"
+              className="inline-flex items-center justify-center rounded-sm border border-transparent bg-pirateGold-600 px-4 py-2 text-sm font-medium text-pirateGold-100 capitalize shadow-sm hover:bg-pirateGold-700 hover:text-pirateGold-300 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2 sm:w-auto"
             >
               Add new {sheetName}
             </button>

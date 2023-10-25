@@ -34,18 +34,18 @@ export default function ImageField({ formName, fieldName, value, onChange }) {
   };
 
   return (
-    <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-shark-800 pt-2">
+    <div className="sm:flex sm:justify-between sm:items-start sm:border-t sm:border-shark-800 pt-4">
       <label
         htmlFor={formName + "_" + fieldName}
         className="block text-sm font-medium text-pirateGold-200 capitalize sm:mt-px sm:pt-2"
       >
-        Photo
+        {fieldName.replaceAll("_", " ")}
       </label>
-      <div className="mt-1 sm:col-span-2 cursor-pointer sm:mt-0">
+      <div className="mt-1 sm:w-4/5 cursor-pointer sm:mt-0">
         <div
           className={
             (value !== "" ? "border-green-800" : "border-shark-800") +
-            " flex justify-center rounded-md border-2 border-dashed px-6 pt-5 pb-6 relative"
+            " flex justify-center rounded-sm border-2 border-dashed px-6 pt-5 pb-6 relative"
           }
           onClick={handleTriggerInput}
         >
@@ -70,7 +70,7 @@ export default function ImageField({ formName, fieldName, value, onChange }) {
             <div className="flex text-sm text-pirateGold-200">
               <label
                 htmlFor={formName + "_" + fieldName}
-                className="relative cursor-pointer rounded-md bg-shark-950 font-medium text-pirateGold-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-pirateGold-500 focus-within:ring-offset-2 hover:text-pirateGold-500"
+                className="relative cursor-pointer rounded-sm bg-shark-950 font-medium text-pirateGold-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-pirateGold-500 focus-within:ring-offset-2 hover:text-pirateGold-500"
               >
                 <span>
                   {value !== ""
