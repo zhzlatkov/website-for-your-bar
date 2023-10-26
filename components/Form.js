@@ -26,42 +26,42 @@ export default function DymaicForm({
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError({ status: false });
-
     let pathToSubmit = formName.split("_");
-    pathToSubmit.shift();
+    if (pathToSubmit.length > 1) {
+      pathToSubmit.shift();
+    }
     let url = `/api/${pathToSubmit.join("-")}`;
-    console.log(url);
     let method = "POST";
 
-    if (data?.id) {
+    if (data?.id || data.id === 0) {
       method = "PATCH";
     }
 
-    (async function () {
-      const response = await fetch(url, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-        }),
-      });
-      const result = await response.json();
-      if (response.status !== 200) {
-        setIsLoading(false);
-        setError({ status: true, message: result.message });
-        console.error(result.message);
-      } else {
-        setIsLoading(false);
-        if (!destinationURL) destinationURL = "/";
-        return Router.push(`${destinationURL}`);
+    const response = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+    });
+    const result = await response.json();
+    if (response.status !== 200) {
+      setIsLoading(false);
+      setError({ status: true, message: result.message });
+      console.error(result.message);
+    } else {
+      setIsLoading(false);
+      if (!destinationURL) {
+        return Router.push("/your-bar-admin/");
       }
-    })();
+      return Router.push(`/your-bar-admin${destinationURL}`);
+    }
   };
 
   if (isLoading) {
@@ -75,7 +75,14 @@ export default function DymaicForm({
       className="space-y-4 divide-y divide-shark-800 p-4"
     >
       {fieldNames.map((fieldName) => {
-        if (fieldName.includes("photo") || fieldName.includes("image")) {
+        if (fieldName === "id") return;
+        if (typeof data[fieldName] === "object") return;
+
+        if (
+          fieldName.includes("photo") ||
+          fieldName.includes("image") ||
+          fieldName.includes("logo")
+        ) {
           return (
             <ImageField
               key={fieldName}
@@ -96,7 +103,10 @@ export default function DymaicForm({
               onChange={onChange}
             />
           );
-        } else if (fieldName.includes("description")) {
+        } else if (
+          fieldName.includes("description") ||
+          fieldName.includes("text")
+        ) {
           return (
             <TextAreaField
               key={fieldName}
@@ -157,7 +167,7 @@ export default function DymaicForm({
         <div className="flex justify-end">
           <button
             type="submit"
-            className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-pirateGold-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-pirateGold-700 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2"
+            className="ml-3 inline-flex justify-center rounded-sm border border-transparent bg-pirateGold-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-pirateGold-700 focus:outline-none focus:ring-2 focus:ring-pirateGold-500 focus:ring-offset-2"
           >
             Save
           </button>
