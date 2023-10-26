@@ -5,10 +5,10 @@ import tableSchema from "../../schemas/tableSchema.js";
 import dataValidator from "../../validators/dataValidator.js";
 
 export default async function updateTable(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
