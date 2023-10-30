@@ -94,7 +94,7 @@ export default function ShoppingCart({ order }) {
                         <p className="m-auto ml-4 font-medium text-pirateGold-400">
                           ${product.price.toFixed(2)}
                         </p>
-                        <ProductRemovingButton index={product.id} />
+                        <ProductRemovingButton index={index} />
                       </div>
                     </div>
                   </div>
