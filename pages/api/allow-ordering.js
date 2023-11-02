@@ -1,10 +1,10 @@
 import prisma from "../../services/prismaClient.mjs";
 
 export default async function createCategory(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST" && req.method !== "PATCH") {
     return res
       .status(405)
-      .setHeader("Allow", "POST")
+      .setHeader("Allow", "POST", "PATCH")
       .send({ message: "Wrong HTTP Request Method" });
   }
 
@@ -21,7 +21,16 @@ export default async function createCategory(req, res) {
     });
   }
 
-  const order = await prisma.orders.findUnique({ where: { tableId } });
+  const orders = await prisma.orders.findMany({
+    where: { tableId },
+    include: { clientsCookies: true, orderedProducts: true },
+  });
+  if (orders.length > 1) {
+    return res.status(404).send({
+      message: `There are more than one opened orders for your table. Please contact our staff.`,
+    });
+  }
+  const order = orders[0];
   if (!order) {
     return res.status(404).send({
       message: `There is no opened order for your table. Please scan the QR Code and try again.`,

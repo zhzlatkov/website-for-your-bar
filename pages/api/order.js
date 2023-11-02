@@ -122,7 +122,6 @@ export default async function updateOrder(req, res) {
   }
 
   try {
-    await upsertOrder({ tableId, cookieId: cookie.id, order });
     if (order) {
       const productsIdArray = productsInCart.map((product) => ({
         orderId: order,
@@ -136,7 +135,7 @@ export default async function updateOrder(req, res) {
         tableId,
         cookieId: cookie.id,
       });
-      productsIdArray = productsInCart.map((product) => ({
+      const productsIdArray = productsInCart.map((product) => ({
         orderId: newOrder.id,
         productId: product.id,
       }));
@@ -197,13 +196,12 @@ async function upsertOrder({
   }
 
   if (order) {
-    await prisma.orders.update({
+    return await prisma.orders.update({
       where: { id: order },
       data,
     });
-    return;
   }
-  await prisma.orders.create({
+  return await prisma.orders.create({
     data,
   });
 }
