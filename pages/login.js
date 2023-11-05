@@ -1,20 +1,34 @@
+"use client";
 import LoginForm from "@/components/LoginForm";
 import Loading from "@/components/Loading";
-import { useState, useEffect } from "react";
-import { isAuthorized } from "@/calls/is-authorized.js";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
-export default function Login() {
-  const [isCheckedFinished, setIsCheckedFinished] = useState(true);
+export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
-  useEffect(() => {
-    (async function () {
-      const res = await isAuthorized();
-      if (res.status == 200) {
-        return Router.push("/your-bar-admin");
-      }
-      setIsCheckedFinished(true);
-    })();
-  }, []);
-
-  return <>{isCheckedFinished ? <LoginForm /> : <Loading />}</>;
+  const loginUser = async (email, password) => {
+    setLoading(true);
+    try {
+      signIn("credentials", { ...{ email, password }, redirect: false });
+      router.push("/your-bar-admin");
+    } catch (err) {
+      setError(err);
+      console.error(err);
+      setLoading(false);
+    }
+    setLoading(false);
+  };
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <LoginForm loginUser={loginUser} error={error} />
+      )}
+    </>
+  );
 }

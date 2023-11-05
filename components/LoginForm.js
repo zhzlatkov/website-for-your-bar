@@ -1,10 +1,36 @@
-import Router from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import Loading from "./Loading";
 
-export default function LoginForm() {
+export default function LoginForm({ loginUser, error }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    (async function () {
+      console.log(status, session);
+      if (status === "loading") {
+        setIsLoading(true);
+        return;
+      }
+      if (
+        status === "authenticated" &&
+        new Date() < new Date(session?.expires)
+      ) {
+        await router.push("./your-bar-admin/");
+        return;
+      }
+      setIsLoading(false);
+    })();
+  }, [session, status, router]);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
@@ -13,34 +39,16 @@ export default function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-
-      if (res.status === 200) {
-        localStorage.setItem("authenticationToken", data.authToken);
-        return Router.push("/your-bar-admin");
-      }
-      setError(data.message);
-    } catch (e) {
-      console.log(e);
-      setError(e.message);
-    }
+    loginUser(email, password);
   };
 
   return (
     <>
-      <div className="flex min-h-screen bg-gray-200 flex-1 flex-col justify-center px-6 pb-12 lg:px-8">
+      <div className="flex min-h-screen bg-shark-950 flex-1 flex-col justify-center px-6 pb-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-pirateGold-500">
             Sign in to your account
           </h2>
         </div>
@@ -55,7 +63,7 @@ export default function LoginForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-pirateGold-300"
               >
                 Email address
               </label>
@@ -66,7 +74,7 @@ export default function LoginForm() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-sm border-0 py-1.5 bg-shark-700 text-center font-medium text-pirateGold-200 shadow-sm ring-1 ring-inset ring-shark-500 placeholder:text-pirateGold-400 focus:ring-2 focus:ring-inset focus:ring-pirateGold-900 sm:text-sm sm:leading-6"
                   onChange={onEmailChange}
                 />
               </div>
@@ -76,7 +84,7 @@ export default function LoginForm() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-pirateGold-300"
                 >
                   Password
                 </label>
@@ -88,7 +96,7 @@ export default function LoginForm() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-sm border-0 py-1.5 bg-shark-700 text-center font-medium text-pirateGold-200 shadow-sm ring-1 ring-inset ring-shark-500 placeholder:text-pirateGold-400 focus:ring-2 focus:ring-inset focus:ring-pirateGold-900 sm:text-sm sm:leading-6"
                   onChange={onPasswordChange}
                 />
               </div>
@@ -97,19 +105,17 @@ export default function LoginForm() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-sm bg-pirateGold-600 px-3 py-1.5 text-sm font-semibold leading-6 text-shark-100 shadow-sm hover:bg-pirateGold-400 hover:text-shark-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shark-400"
               >
                 Sign in
               </button>
             </div>
           </form>
-          <p
-            className={`${
-              error ? "" : "hidden"
-            } mt-10 text-center text-sm text-red-500`}
-          >
-            {error}
-          </p>
+          {error ? (
+            <p className="mt-4 text-center text-sm text-red-500">
+              {error?.message}
+            </p>
+          ) : null}
         </div>
       </div>
     </>
