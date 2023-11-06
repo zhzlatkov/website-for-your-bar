@@ -42,5 +42,17 @@ module.exports = {
       },
     },
   },
+  extend: {
+    typography: {
+      DEFAULT: {
+        css: {
+          ".text-center-last": {
+            textAlignLast: "center",
+          },
+        },
+      },
+    },
+  },
+
   plugins: [],
 };

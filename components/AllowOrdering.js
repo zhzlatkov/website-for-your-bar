@@ -5,14 +5,24 @@ import { useState } from "react";
 import { useOrderContext } from "@/context/OrderContext.js";
 
 export default function AllowOrdering() {
-  const { allowedOrder, orderingCode, updateAllowedOrder, updateOrderingCode } =
-    useOrderContext();
+  const {
+    allowedOrder,
+    orderingCode,
+    productsInCart,
+    orderedProducts,
+    updateAllowedOrder,
+    updateOrderingCode,
+  } = useOrderContext();
 
   const [code, setCode] = useState(orderingCode);
   const [isLoading, setIsLoading] = useState(false);
   const [isCodeCopied, setIsCodeCopied] = useState(false);
   const [error, setError] = useState({ status: false });
-  const [isVisible, setIsVisible] = useState(allowedOrder);
+  const [isVisible, setIsVisible] = useState(
+    orderingCode ||
+      (allowedOrder &&
+        !(orderedProducts.length === 0 && productsInCart.length !== 0))
+  );
 
   const onClose = (e) => {
     e.preventDefault();
@@ -26,12 +36,12 @@ export default function AllowOrdering() {
   };
 
   const onChange = (e) => {
-    e.preventDefault();
     setCode(e.value);
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    const response = fetch("/api/allow-ordering", {
+    setIsLoading(true);
+    const response = await fetch("/api/allow-ordering", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +87,7 @@ export default function AllowOrdering() {
               <button
                 onClick={onCopyToClipboard}
                 className={
-                  "h-8 px-2 box-content border-2 rounded-sm text-pirateGold-200 " +
+                  "h-8 px-2 box-content border-2 rounded-sm " +
                   (!isCodeCopied
                     ? "border-pirateGold-100 text-pirateGold-200 bg-shark-950 focus:text-pirateGold-300 focus:bg-shark-700"
                     : "border-lime-500 text-lime-500 bg-pirateGold-200 focus:text-lime-600")
@@ -100,13 +110,13 @@ export default function AllowOrdering() {
                   onChange={onChange}
                   hideLabel={true}
                 />
+                <button
+                  type="submit"
+                  className="mt-1 sm:mt-0 border-2 lg:border-1 border-pirateGold-100 rounded-sm px-2 h-8 lg:6 bg-shark-950 text-pirateGold-200 focus:bg-shark-700 focus:text-pirateGold-300"
+                >
+                  Submit
+                </button>
               </form>
-              <button
-                type="submit"
-                className="mt-1 sm:mt-0 border-2 lg:border-1 border-pirateGold-100 rounded-sm px-2 h-8 lg:6 bg-shark-950 text-pirateGold-200 focus:bg-shark-700 focus:text-pirateGold-300"
-              >
-                Submit
-              </button>
             </div>
           )}
         </div>

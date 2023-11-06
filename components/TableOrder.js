@@ -5,51 +5,11 @@ import Toggle from "./Toggle";
 export default function TableOrder({ order }) {
   const [error, setError] = useState({ status: false });
   const [isLoading, setIsLoading] = useState(false);
+  const [orderData, setOrderData] = useState(order);
   const removeProductFromOrder = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError({ status: false });
-    let url = `/api/remove-ordered-product`;
-    let method = "PATCH";
-    const response = await fetch(url, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: { orderId: order.id, productId: e.target.value },
-      }),
-    });
-
-    const result = await response.json();
-    if (response.status !== 200) {
-      setIsLoading(false);
-      setError({ status: true, message: result.message });
-      console.error(result.message);
-      return;
-    }
-    setIsLoading(false);
-  };
-  const updateOrder = async (value, action) => {
-    setIsLoading(true);
-    setError({ status: false });
-    switch (action) {
-      case "closeOrder":
-        order.status = false;
-        break;
-
-      case "askForPrintedMenu":
-        order.askForPrintedMenu = false;
-        break;
-
-      case "callTheStaff":
-        order.callTheStaff = false;
-        break;
-
-      case "askForBill":
-        order.askForBill = false;
-        break;
-    }
     let url = `/api/order`;
     let method = "PATCH";
     const response = await fetch(url, {
@@ -58,7 +18,11 @@ export default function TableOrder({ order }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        data: { order },
+        data: {
+          orderId: orderData.id,
+          productId: e.target.value,
+          userEmail: "zlatko@zlatko.com",
+        },
       }),
     });
 
@@ -69,6 +33,53 @@ export default function TableOrder({ order }) {
       console.error(result.message);
       return;
     }
+    setOrderData(result.order);
+    setIsLoading(false);
+  };
+  const updateOrder = async (value, action) => {
+    setIsLoading(true);
+    setError({ status: false });
+    let data = { orderId: orderData.id };
+    switch (action) {
+      case "closeOrder":
+        data.isClosed = true;
+        break;
+
+      case "askForPrintedMenu":
+        data.askForPrintedMenu = false;
+        break;
+
+      case "callTheStaff":
+        data.callTheStaff = false;
+        break;
+
+      case "askForBill":
+        data.askForBill = false;
+        break;
+    }
+
+    let url = `/api/order`;
+    let method = "PATCH";
+    data.userEmail = "zlatko@zlatko.com";
+    data.orderId = orderData.id;
+    const response = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+    });
+
+    const result = await response.json();
+    if (response.status !== 200) {
+      setIsLoading(false);
+      setError({ status: true, message: result.message });
+      console.error(result.message);
+      return;
+    }
+    setOrderData(result.order);
     setIsLoading(false);
   };
 
@@ -85,6 +96,10 @@ export default function TableOrder({ order }) {
     updateOrder(false, "closeOrder");
   };
 
+  if (orderData.isClosed) {
+    return;
+  }
+
   if (isLoading) {
     return <Loading />;
   }
@@ -92,42 +107,44 @@ export default function TableOrder({ order }) {
   return (
     <>
       <div className="px-6">
-        <h1 className="pb-2 text-xl text-center text-shark-200">Order:</h1>
-        {order.askForPrintedMenu ? (
+        <h1 className="pb-2 text-xl text-center text-shark-200">
+          Order {orderData.id}:
+        </h1>
+        {orderData.askForPrintedMenu ? (
           <div className="py-4 px-3 text-pirateGold-800 border-y-2 border-shark-500 text-lg flex justify-between">
             <p>Customers ask for a printed menu: </p>
             <Toggle
-              state={order.askForPrintedMenu}
+              state={orderData.askForPrintedMenu}
               handleStateChange={updateАskForPrintedMenu}
               blockEnabling={true}
             />
           </div>
         ) : null}
-        {order.callTheStaff ? (
+        {orderData.callTheStaff ? (
           <div className="py-4 px-3 text-pirateGold-800 border-y-2 border-shark-500 text-lg flex justify-between">
             <p>customers ask for a waiter at their table: </p>
             <Toggle
-              state={order.askForPrintedMenu}
+              state={orderData.callTheStaff}
               handleStateChange={updateCallTheStaff}
               blockEnabling={true}
             />
           </div>
         ) : null}
-        {order ? (
+        {orderData.askForBill ? (
           <div className="py-4 px-3 text-pirateGold-800 border-y-2 border-shark-500 text-lg flex justify-between">
-            <p>Customers ask for a waiter at their table: </p>
+            <p>Customers ask for the bill: </p>
             <Toggle
-              state={false}
+              state={orderData.askForBill}
               handleStateChange={updateАskForBill}
               blockEnabling={true}
             />
           </div>
         ) : null}
-        {order.comment ? (
+        {orderData.comment ? (
           <div className="py-4 px-3 text-pirateGold-800 border-y-2 border-shark-500 text-lg flex justify-between">
             <p>
               <span>Customers comment about their order: </span>
-              {order.comment}
+              {orderData.comment}
             </p>
           </div>
         ) : null}
@@ -144,9 +161,8 @@ export default function TableOrder({ order }) {
             </div>
           </div>
         )}
-        {order.orderedProducts.map((orderedProduct) => (
-          <>
-            {/* orderedProduct.orderedProducts[0] */}
+        {orderData.orderedProducts.map((orderedProduct) => (
+          <div key={orderedProduct.id}>
             <div
               key={orderedProduct.product.id}
               className="my-4 px-4 pb-4 border-b-2 border-shark-400 text-pirateGold-300 text-sm flex justify-around"
@@ -170,10 +186,11 @@ export default function TableOrder({ order }) {
                 {orderedProduct.product.quantityType}
               </h2>
               <h2 key={orderedProduct.product.price} className="m-auto">
-                {orderedProduct.product.price}
+                {orderedProduct.product.price.toFixed(2)}
               </h2>
               <button
                 key={orderedProduct.id + "_" + "remove-ordered-roduct"}
+                value={orderedProduct.id}
                 type="button"
                 className="whitespace-nowrap max-h-8 m-auto ml-2 py-1 px-2 text-xs text-shark-200 border rounded-sm border-pirateGold-400 hover:text-pirateGold-400 hover:border-shark-400"
                 onClick={removeProductFromOrder}
@@ -181,7 +198,7 @@ export default function TableOrder({ order }) {
                 X
               </button>
             </div>
-          </>
+          </div>
         ))}
         <button
           type="button"

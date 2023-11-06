@@ -17,7 +17,50 @@ export default async function updateOrder(req, res) {
     callTheStaff,
     askForBill,
     comment,
+    userEmail,
+    orderId,
+    productId,
   } = req.body.data;
+
+  if (userEmail) {
+    let order;
+    const user = await prisma.user.findUnique({
+      where: { email: userEmail },
+    });
+    order = await prisma.orders.findUnique({
+      where: { id: orderId },
+    });
+    if (!user || !order) {
+      return res.status(400).send({ message: "Invalid data." });
+    }
+    if (productId || productId == 0) {
+      productId = Number(productId);
+      await prisma.orderProduct.delete({
+        where: {
+          id: productId,
+        },
+      });
+    }
+    if (!productId && productId !== 0) {
+      order = await upsertOrder({
+        tableId: order.tableId,
+        order: orderId,
+        askForBill,
+        callTheStaff,
+        askForPrintedMenu,
+        isClosed,
+        comment,
+      });
+    }
+    order = await prisma.orders.findUnique({
+      where: { id: orderId },
+      include: { orderedProducts: { include: { product: true } } },
+    });
+    return res.status(200).send({
+      message: "Successfully created/updated an Order.",
+      order,
+    });
+  }
 
   let cookie = req.cookies["order"];
   cookie = cookie.trim();
