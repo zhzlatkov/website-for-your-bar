@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useState } from "react";
 import normalizeOrderedProduct from "@/normalizers/normalizeOrderedProduct";
 
@@ -37,8 +39,7 @@ export const OrderProvider = ({ children }) => {
     return setProductsInCart([normalizedProduct, ...productsInCart]);
   };
 
-  const ProductRemovingFromCart = (value) => {
-    const index = productsInCart.findIndex((product) => product.id === value);
+  const removeProductFromCart = (index) => {
     const updatedProductsInCart = [
       ...productsInCart.slice(0, index),
       ...productsInCart.slice(index + 1),
@@ -61,7 +62,7 @@ export const OrderProvider = ({ children }) => {
         updateOrderingCode,
         updateOrderedProducts,
         updateProductInCart,
-        ProductRemovingFromCart,
+        removeProductFromCart,
         removeAllProductsFromCart,
       }}
     >

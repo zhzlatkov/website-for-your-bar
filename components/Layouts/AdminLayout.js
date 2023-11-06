@@ -2,12 +2,12 @@ import Loading from "../Loading";
 import { useRouter } from "next/router";
 import AdminNavbar from "../AdminNavbar";
 import AdminSidebar from "../AdminSidebar";
-import { isAuthorized } from "../../calls/is-authorized.js";
 import { useState, useEffect } from "react";
 import { HomeIcon } from "@heroicons/react/24/outline";
+import { useSession } from "next-auth/react";
 
 export default function AdminLayout({ current, children }) {
-  const navigation = [
+  const navigationPages = [
     {
       name: "Dashboard",
       href: "/your-bar-admin",
@@ -15,7 +15,7 @@ export default function AdminLayout({ current, children }) {
       current: current === "dashboard",
     },
   ];
-  const yourBar = [
+  const yourBarPages = [
     {
       id: 1,
       name: "Settings",
@@ -56,7 +56,7 @@ export default function AdminLayout({ current, children }) {
       name: "FunFacts",
       href: "/your-bar-admin/fun-facts",
       initial: "F",
-      current: current === "funFacts",
+      current: current === "fun-facts",
     },
     {
       id: 7,
@@ -67,41 +67,49 @@ export default function AdminLayout({ current, children }) {
     },
   ];
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const page = [...navigation, ...yourBar].find((page) => page.current);
-
   const router = useRouter();
+  const { data: session, status } = useSession();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const page = [...navigationPages, ...yourBarPages].find(
+    (page) => page.current
+  );
+
   useEffect(() => {
     (async function () {
-      const response = await isAuthorized();
-      if (response.status === 403) {
-        return router.push("/login");
+      if (status === "loading") {
+        setIsLoading(true);
+        return;
       }
-      setIsAdmin(true);
+      if (
+        (status !== "authenticated" && status !== "loading") ||
+        new Date() > new Date(session?.expires)
+      ) {
+        await router.push("./login");
+        return;
+      }
+      setIsLoading(false);
     })();
+  }, [session, status, router]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <>
-      {!isAdmin ? (
-        <Loading />
-      ) : (
-        <div className="bg-shark-950">
-          <AdminSidebar
-            navigation={navigation}
-            yourBar={yourBar}
-            sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen}
-          />
-          <AdminNavbar setSidebarOpen={setSidebarOpen} page={page} />
-          <main className="min-h-screen bg-shark-950 lg:py-10 lg:pl-72">
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
-          </main>
-        </div>
-      )}
+      <div className="bg-shark-950">
+        <AdminSidebar
+          navigationPages={navigationPages}
+          yourBarPages={yourBarPages}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+        <AdminNavbar setSidebarOpen={setSidebarOpen} page={page} />
+        <main className="min-h-screen bg-shark-950 lg:py-10 lg:pl-72">
+          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+        </main>
+      </div>
     </>
   );
 }

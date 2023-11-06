@@ -34,7 +34,7 @@ export default function TableItem({ table }) {
   };
 
   return (
-    <div className="m-4 border-2 border-shark-500 rounded-sm">
+    <div className="m-4 border-2 border-shark-500 rounded-sm self-start">
       {isLoading ? (
         <div className="w-96">
           <Loading />

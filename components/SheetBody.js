@@ -53,7 +53,11 @@ export default function SheetBody({ sheetName, data }) {
                 key={sheetName + "_" + property}
                 className="whitespace-nowrap px-3 py-4 text-sm text-pirateGold-400"
               >
-                <div className="text-pirateGold-400">{row[property]}</div>
+                <div className="text-pirateGold-400">
+                  {row[property].length > 30
+                    ? row[property].substring(0, 30) + "..."
+                    : row[property]}
+                </div>
               </td>
             );
           })}

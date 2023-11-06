@@ -5,8 +5,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function AdminSidebar({
-  navigation,
-  yourBar,
+  navigationPages,
+  yourBarPages,
   sidebarOpen,
   setSidebarOpen,
 }) {
@@ -76,7 +76,7 @@ export default function AdminSidebar({
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
                       <li>
                         <ul role="list" className="-mx-2 space-y-1">
-                          {navigation.map((item) => (
+                          {navigationPages.map((item) => (
                             <li key={item.name}>
                               <Link
                                 href={item.href}
@@ -111,7 +111,7 @@ export default function AdminSidebar({
                           Your Bar
                         </div>
                         <ul role="list" className="-mx-2 mt-2 space-y-1">
-                          {yourBar.map((item) => (
+                          {yourBarPages.map((item) => (
                             <li key={item.name}>
                               <Link
                                 href={item.href}
@@ -161,7 +161,7 @@ export default function AdminSidebar({
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
-                  {navigation.map((page) => (
+                  {navigationPages.map((page) => (
                     <li key={page.name}>
                       <Link
                         href={page.href}
@@ -187,7 +187,7 @@ export default function AdminSidebar({
                   Your Bar
                 </div>
                 <ul role="list" className="-mx-2 mt-2 space-y-1">
-                  {yourBar.map((page) => (
+                  {yourBarPages.map((page) => (
                     <li key={page.name}>
                       <Link
                         href={page.href}

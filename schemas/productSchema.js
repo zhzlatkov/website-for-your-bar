@@ -3,7 +3,7 @@ import { object, string, boolean, number } from "yup";
 const productSchema = object({
   id: number(),
   name: string().required(),
-  categoryId: number().required().positive().integer(),
+  categoryId: number().required().integer(),
   price: number().required().positive(),
   quantity: number().required().positive().integer(),
   quantityType: string(),

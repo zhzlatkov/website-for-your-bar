@@ -17,7 +17,6 @@ export default function Table({
 }) {
   const { updateAllowedOrder, updateOrderingCode, updateOrderedProducts } =
     useOrderContext();
-
   useEffect(() => {
     updateAllowedOrder(orderingStatus);
     updateOrderingCode(order?.orderCode);
@@ -62,13 +61,15 @@ export async function getServerSideProps({ req, res, query }) {
       include: { clientsCookies: true, orderedProducts: true },
     });
     if (orders.length !== 1) {
-      res.setHeader(
-        "Set-Cookie",
-        "order=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-      );
-      return res.status(404).send({
-        message: `Please refresh your page and try again. If you are seeing same error please contact our staff.`,
-      });
+      res
+        .setHeader(
+          "Set-Cookie",
+          "order=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        )
+        .status(404)
+        .send({
+          message: `Please refresh your page and try again. If you are seeing same error please contact our staff.`,
+        });
     }
     return {
       props: {
