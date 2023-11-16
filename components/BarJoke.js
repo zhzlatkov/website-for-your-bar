@@ -8,9 +8,9 @@ export default function BarJoke({ isVisible, jokes, image }) {
   const randomIndex = Math.floor(Math.random() * jokes.length);
 
   return (
-    <div className="mt-16">
+    <section className="mt-16">
       <Separator withIcon={false} />
-      <div className="relative z-10 bg-shark-950 pb-6 sm:pb-14 xl:pb-20">
+      <article className="relative z-10 bg-shark-950 pb-6 sm:pb-14 xl:pb-20">
         <div
           className="absolute inset-0 overflow-hidden rotate-180"
           aria-hidden="true"
@@ -62,7 +62,7 @@ export default function BarJoke({ isVisible, jokes, image }) {
             </figure>
           </div>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
   );
 }

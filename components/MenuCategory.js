@@ -6,7 +6,7 @@ export default function MenuCategory({ category }) {
   return (
     <Disclosure as="div" key={category.name} className="pt-6">
       {({ open }) => (
-        <>
+        <section>
           <dt>
             <Disclosure.Button className="flex w-full items-start justify-between text-left text-pirateGold-200">
               <span className="text-base font-semibold leading-7 uppercase">
@@ -26,7 +26,7 @@ export default function MenuCategory({ category }) {
               <MenuProduct key={product.name} product={product}></MenuProduct>
             ))}
           </Disclosure.Panel>
-        </>
+        </section>
       )}
     </Disclosure>
   );

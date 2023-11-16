@@ -14,7 +14,7 @@ export default function Services({
 }) {
   const icons = { faChampagneGlasses, faMartiniGlassCitrus, faIcons };
   return (
-    <div className="relative isolate overflow-hidden bg-shark-900 pt-2 pb-4 sm:py-12">
+    <section className="relative isolate overflow-hidden bg-shark-900 pt-2 pb-4 sm:py-12">
       <Image
         src="https://cdn.pixabay.com/photo/2015/05/29/19/18/cafe-789635_1280.jpg"
         alt="your bar interior cover photo"
@@ -40,7 +40,7 @@ export default function Services({
         />
       </div>
       <div className="mx-auto w-11/12 max-w-6xl">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <section className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl sm:text-6xl">
             {headingOne}
           </h2>
@@ -50,11 +50,11 @@ export default function Services({
           <p className="my-6 text-lg leading-8 text-pirateGold-100">
             {shortDescription}
           </p>
-        </div>
-        <div className="mx-auto my-6 grid max-w-2xl grid-cols-1 gap-4 sm:my-10 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+        </section>
+        <section className="mx-auto my-6 grid max-w-2xl grid-cols-1 gap-4 sm:my-10 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           {services.map((card) => {
             return (
-              <div
+              <article
                 key={card.name}
                 className="flex items-center sm:items-start gap-x-4 rounded-xl bg-shark-900 p-7 sm:p-8 opacity-80"
               >
@@ -63,19 +63,19 @@ export default function Services({
                   size="2xl"
                   className="mx-auto mr-1 sm:m-auto sm:mr-4 h-8 w-8 flex-none text-pirateGold-500"
                 />
-                <div className=" leading-7">
+                <section className=" leading-7">
                   <h3 className="font-medium sm:font-semi-bold text-pirateGold-200">
                     {card.name}
                   </h3>
                   <p className="text-pirateGold-500 text-sm">
                     {card.information}
                   </p>
-                </div>
-              </div>
+                </section>
+              </article>
             );
           })}
-        </div>
+        </section>
       </div>
-    </div>
+    </section>
   );
 }

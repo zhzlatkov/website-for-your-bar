@@ -30,18 +30,18 @@ export default function FunFacts({ isVisible, funFacts }) {
   }
 
   return (
-    <div className="mb-12 mt-6 mx-auto w-11/12 max-w-6xl">
+    <section className="mb-12 mt-6 mx-auto w-11/12 max-w-6xl">
       <div className="mx-auto max-w-2xl sm:text-center">
-        <p className="text-3xl font-bold tracking-tight text-pirateGold-200 sm:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-pirateGold-200 sm:text-4xl">
           Fun Facts Or Not?
-        </p>
+        </h2>
         <p className="mt-2 text-lg font-bold leading-8 text-pirateGold-500 underline decoration-pirateGold-900 decoration-4 [text-decoration-skip-ink:none] underline-offset-[-2px]">
           Lets prepare you for your next going out. Intresting facts!
         </p>
       </div>
       <dl className="mx-auto mt-4 lg:mt-10 grid grid-cols-1 gap-x-4 gap-y-2 text-base leading-7 text-pirateGold-500 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
         {funFacts.map((funFact, index) => (
-          <div key={index} className="relative pl-9">
+          <article key={index} className="relative pl-9">
             <dt
               key={`name_${index}`}
               className="inline font-semibold text-pirateGold-500"
@@ -60,9 +60,9 @@ export default function FunFacts({ isVisible, funFacts }) {
             >
               {funFact.text}
             </dd>
-          </div>
+          </article>
         ))}
       </dl>
-    </div>
+    </section>
   );
 }

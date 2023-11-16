@@ -3,7 +3,7 @@ export default function Address({ isVisible, address }) {
     return;
   }
   return (
-    <div
+    <section
       id="address"
       className="relative w-11/12 mx-auto isolate overflow-hidden bg-shark-950 pt-12 sm:text-center"
     >
@@ -24,6 +24,6 @@ export default function Address({ isVisible, address }) {
           ></iframe>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

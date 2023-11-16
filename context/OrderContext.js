@@ -42,7 +42,7 @@ export const OrderProvider = ({ children }) => {
   const removeProductFromCart = (index) => {
     const updatedProductsInCart = [
       ...productsInCart.slice(0, index),
-      ...productsInCart.slice(index + 1),
+      ...productsInCart.slice(index + 1, productsInCart.length),
     ];
     setProductsInCart(updatedProductsInCart);
   };
