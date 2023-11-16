@@ -11,46 +11,164 @@ datasource db {
   relationMode = "prisma"
 }
 
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id       Int         @id @default(autoincrement())
-  email    String?      @unique
-  password String?
-  token    AuthToken[]
+  id            String    @id @default(cuid())
+  name          String?   @unique
+  email         String?   @unique
+  password      String?
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
 }
 
-model AuthToken {
-  id     Int    @id @default(autoincrement())
-  token  String?
-  date BigInt?
-  user   User?   @relation(fields: [userId], references: [id])
-  userId Int
-}
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-model LoginAttempt {
-  id        Int     @id @default(autoincrement())
-  ip        String?
-  createdAt Int
-}
-
-model Products {
-  id               Int        @id @default(autoincrement())
-  name             String?     @unique
-  price            Int?
-  quantity         Int?
-  quantityType     String?
-  shortDescription String
-  longDescription  String?
-  category         Categories @relation(fields: [categoryId], references: [id])
-  categoryId       Int
-  status           Boolean?    @default(false)
-  photoPath        String
+  @@unique([identifier, token])
 }
 
 model Categories {
-  id               Int        @id @default(autoincrement())
-  name             String?     @unique
-  icon             String
-  shortDescription String
-  status           Boolean?    @default(false)
+  id               Int                @id @default(autoincrement())
+  name             String?            @unique
+  image            String             @db.VarChar(400)
+  shortDescription String             @db.TinyText
+  status           Boolean?           @default(false)
   products         Products[]
+}
+ 
+model Products {
+  id               Int                @id @default(autoincrement())
+  name             String?            @unique
+  price            Float?
+  quantity         Float?
+  quantityType     String?
+  shortDescription String             @db.TinyText
+  longDescription  String?            @db.Text
+  category         Categories         @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  status           Boolean?           @default(false)
+  image            String             @db.VarChar(400)
+  orders           OrderProduct[]
+}
+ 
+model Settings {
+  id               Int                @id @default(autoincrement())
+  name             String?
+  logo             String?
+  email            String?
+  phone            Int?
+  homeHeading1     String?
+  homeHeading2     String?
+  shortDescription String?            @db.TinyText
+  addressStatus    Boolean            @unique @default(true)
+  address          String             @db.VarChar(1000)
+  statusFunFacts   Boolean?           @unique @default(true)
+  funFacts         FunFacts[] 
+  statusJokes      Boolean?           @unique @default(true)
+  jokesImage       String             @db.VarChar(400)
+  jokes            Jokes[]
+  statusOrdering   Boolean?           @default(false)
+}
+
+model Services {
+  id               Int                @id @default(autoincrement())
+  name             String?            @unique
+  icon             String?
+  information      String?            @db.TinyText
+}
+ 
+model FunFacts {
+  id               Int               @id @default(autoincrement())
+  text             String?           @db.TinyText
+  settings         Settings          @relation(fields: [funFactsStatus], references: [statusFunFacts])
+  funFactsStatus   Boolean           @default(true)
+  status           Boolean
+}
+ 
+model Jokes {
+  id               Int               @id @default(autoincrement())
+  author           String
+  place            String
+  text             String?           @db.VarChar(1000)
+  settings         Settings          @relation(fields: [jokesStatus], references: [statusJokes])
+  jokesStatus      Boolean           @default(true)
+  status           Boolean
+}
+ 
+model SocialMedias {
+  id               Int               @id @default(autoincrement())
+  name             String?           @unique
+  icon             String?
+  link             String
+}
+ 
+ 
+model Tables {
+  id              Int               @id @default (autoincrement())
+  name            String?           @unique
+  url             String?           @unique
+  seats           Int
+  status          Boolean?          @default(false)
+  orders          Orders[]
+}
+
+model Cookies {
+  id               Int               @id @default (autoincrement())
+  cookie           String?           @unique
+  order            Orders?           @relation(fields: [orderId], references: [id])
+  orderId          Int?
+}
+ 
+model Orders {
+  id                  Int              @id @default (autoincrement())
+  orderCode           Int?
+  clientsCookies      Cookies[]
+  table               Tables           @relation(fields: [tableId], references: [id])
+  tableId             Int
+  isClosed            Boolean?         @default(false)
+  orderedProducts     OrderProduct[]
+  askForPrintedMenu   Boolean?         @default(false)
+  callTheStaff        Boolean?         @default(false)
+  askForBill          Boolean?         @default(false)
+  comment             String?
+}
+
+model OrderProduct {
+  id               Int              @id @default (autoincrement())
+  orders           Orders           @relation(fields: [orderId], references: [id])
+  orderId          Int
+  quantity         Int?
+  product          Products         @relation(fields: [productId], references: [id])
+  productId        Int
+  coment           String?          
 }

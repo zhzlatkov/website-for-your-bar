@@ -18,6 +18,8 @@ You can start editing some of the pages by modifying them in `pages/`. The page 
 
 This project is using Next.js, Tailwind, TailwindUI, HeadlesUI, Heroicons, Prisma, PrismaClient, Amazon s3, Yup, ESLint, Prettier, Husky,
 
+Using qrcode.react to create the table QR code
+
 Zlatko Zlatkov creates the whole design, it is inspired by the menu of one local Bulgarian Bar and is implemented using TailwindUI components, HeadlesUI components, and Heroicons.
 
 Next.js is chosen by the author for the main reason that the idea behind this project is to serve some small and medium-sized bars, restaurants, clubs, and other companies that are using menus for their businesses. So not so straight to the point Next.js is for full-stack Web applications with React features and server-side rendering, with simple words one of the best things right now for building a web application with prioritization on SEO optimizations.
@@ -45,27 +47,13 @@ The easiest way to deploy your website is to use the [Vercel Platform](https://v
 
 Next.js deployment documentation(https://nextjs.org/docs/deployment) for more details.
 
-### on Cloudflare
+### DB on PlanetScale
 
 ...
 
-### on Firebase
+### Set Up Amazon s3
 
-...
-
-### on Netlify
-
-...
-
-## DB Deployment
-
-### on PlanetScale
-
-...
-
-## Set Up Amazon s3
-
-### Steps to create an S3 public bucket:
+#### Steps to create an S3 public bucket:
 
 1. In AWS console, go to S3 Management Console at https://console.aws.amazon.com/s3/
 2. Click on “Create Bucket” button
@@ -96,7 +84,7 @@ Next.js deployment documentation(https://nextjs.org/docs/deployment) for more de
 7. Replace `bucket-name` with your bucket name.
 8. Save the policy.
 
-### Get Access key and Secret access key:
+#### Get Access key and Secret access key:
 
 1. Go to AWS console and click on your username in the top right corner.
 2. Click on “My Security Credentials”.
