@@ -32,7 +32,7 @@ export default function FunFacts({ isVisible, funFacts }) {
   return (
     <section className="mb-12 mt-6 mx-auto w-11/12 max-w-6xl">
       <div className="mx-auto max-w-2xl sm:text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-pirateGold-200 sm:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-pirateGold-200 text-shadow-h3 sm:text-4xl">
           Fun Facts Or Not?
         </h2>
         <p className="mt-2 text-lg font-bold leading-8 text-pirateGold-500 underline decoration-pirateGold-900 decoration-4 [text-decoration-skip-ink:none] underline-offset-[-2px]">

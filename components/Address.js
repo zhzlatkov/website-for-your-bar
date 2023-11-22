@@ -7,7 +7,7 @@ export default function Address({ isVisible, address }) {
       id="address"
       className="relative w-11/12 mx-auto isolate overflow-hidden bg-shark-950 pt-12 sm:text-center"
     >
-      <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-pirateGold-200 sm:text-4xl">
+      <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-pirateGold-200 text-shadow-h3 sm:text-4xl">
         We Are Here!
       </h2>
       <p className="mx-auto mt-2 max-w-xl text-base sm:text-lg leading-8 text-pirateGold-400">

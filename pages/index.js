@@ -20,6 +20,7 @@ export default function Home({
   orderingStatus,
   statusOrdering,
 }) {
+  console.log(orderingStatus);
   const { updateAllowedOrder, updateOrderingCode, updateOrderedProducts } =
     useOrderContext();
 

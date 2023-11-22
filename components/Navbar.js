@@ -38,7 +38,7 @@ export default function Navbar({ settings }) {
                     <Image
                       src={settings.logo}
                       alt="Bar logo"
-                      classNameRoot="w-14 h-14 hidden lg:block mt-14 rounded-full border-2 border-pirateGold-500 z-10"
+                      classNameRoot="w-14 h-14 hidden lg:block mt-14 rounded-full shadow-lg shadow-pirateGold-700 border-2 border-pirateGold-500 z-10"
                       classNameImage="rounded-full border border-pirateGold-500"
                     ></Image>
                   </Link>
@@ -119,7 +119,7 @@ export default function Navbar({ settings }) {
                 <Image
                   src={settings.logo}
                   alt="Bar logo"
-                  classNameRoot="w-10 h-10 lg:hidden rounded-full border border-pirateGold-500 z-10"
+                  classNameRoot="w-10 h-10 lg:hidden rounded-full border border-pirateGold-500 shadow-md shadow-pirateGold-700/50 z-10"
                   classNameImage="rounded-full border border-pirateGold-500"
                 ></Image>
               </Link>

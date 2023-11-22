@@ -41,10 +41,10 @@ export default function Services({
       </div>
       <div className="mx-auto w-11/12 max-w-6xl">
         <section className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl sm:text-6xl">
+          <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl text-shadow-h1 sm:text-6xl">
             {headingOne}
           </h2>
-          <h4 className="text-2xl my-2 font-bold underline decoration-pirateGold-500 decoration-8 [text-decoration-skip-ink:none] underline-offset-[-3px] tracking-wide text-pirateGold-100 text-3xl sm:text-4xl">
+          <h4 className="w-max text-2xl my-2 font-bold underline decoration-pirateGold-500 decoration-8 [text-decoration-skip-ink:none] underline-offset-[-3px] tracking-wide text-pirateGold-100 text-3xl sm:text-4xl shadow-2xl text-shadow-h2 shadow-pirateGold-700">
             {headingTwo}
           </h4>
           <p className="my-6 text-lg leading-8 text-pirateGold-100">
@@ -56,7 +56,7 @@ export default function Services({
             return (
               <article
                 key={card.name}
-                className="flex items-center sm:items-start gap-x-4 rounded-xl bg-shark-900 p-7 sm:p-8 opacity-80"
+                className="flex items-center sm:items-start gap-x-4 rounded-xl bg-shark-900 p-7 sm:p-8 opacity-80 shadow-2xl shadow-pirateGold-700/70"
               >
                 <FontAwesomeIcon
                   icon={icons[card.icon]}

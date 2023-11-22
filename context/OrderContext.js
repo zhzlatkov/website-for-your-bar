@@ -11,8 +11,17 @@ export const useOrderContext = () => {
 export const OrderProvider = ({ children }) => {
   const [allowedOrder, setAllowedOrder] = useState(false);
   const [orderingCode, setOrderingCode] = useState(undefined);
+  const [flashMessages, setFlashMessages] = useState({
+    status: false,
+    color: "",
+    message: "",
+  });
   const [orderedProducts, setOrderedProducts] = useState([]);
   const [productsInCart, setProductsInCart] = useState([]);
+
+  const updateFlashMessages = (newValue) => {
+    setFlashMessages(newValue);
+  };
 
   const updateAllowedOrder = (newValue) => {
     setAllowedOrder(newValue);
@@ -36,6 +45,11 @@ export const OrderProvider = ({ children }) => {
 
   const updateProductInCart = (newValue) => {
     const normalizedProduct = normalizeOrderedProduct(newValue);
+    updateFlashMessages({
+      status: true,
+      color: "green",
+      message: "Successfully added product to cart",
+    });
     return setProductsInCart([normalizedProduct, ...productsInCart]);
   };
 
@@ -44,10 +58,20 @@ export const OrderProvider = ({ children }) => {
       ...productsInCart.slice(0, index),
       ...productsInCart.slice(index + 1, productsInCart.length),
     ];
+    updateFlashMessages({
+      status: true,
+      color: "green",
+      message: "Successfully removed product from cart",
+    });
     setProductsInCart(updatedProductsInCart);
   };
 
   const removeAllProductsFromCart = () => {
+    updateFlashMessages({
+      status: true,
+      color: "green",
+      message: "Successfully removed all products from cart",
+    });
     setProductsInCart([]);
   };
 
@@ -58,10 +82,12 @@ export const OrderProvider = ({ children }) => {
         orderingCode,
         orderedProducts,
         productsInCart,
+        flashMessages,
         updateAllowedOrder,
         updateOrderingCode,
-        updateOrderedProducts,
         updateProductInCart,
+        updateFlashMessages,
+        updateOrderedProducts,
         removeProductFromCart,
         removeAllProductsFromCart,
       }}

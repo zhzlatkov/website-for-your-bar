@@ -31,7 +31,7 @@ export default function BarJoke({ isVisible, jokes, image }) {
               src={image}
               alt="let me tell you some fun bar joke"
               classNameImage="inset-0 h-full w-full rounded-sm bg-shark-800 object-cover object-top shadow-2xl border-pirateGold-500 border-4"
-              classNameRoot="aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto"
+              classNameRoot="aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto shadow-2xl shadow-pirateGold-700/60"
             ></Image>
           </div>
           <div className="w-full max-w-2xl xl:max-w-none xl:flex-auto xl:px-16 xl:py-24">

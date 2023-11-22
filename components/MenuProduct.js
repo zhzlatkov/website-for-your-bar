@@ -6,7 +6,7 @@ export default function MenuProducts({ product }) {
   return (
     <article
       key={product.id}
-      className="relative my-6 mx-4 md:mx-6 items-center"
+      className="animate-slideDown relative my-6 mx-4 md:mx-6 items-center"
     >
       <div className="flex">
         <Link
@@ -15,8 +15,11 @@ export default function MenuProducts({ product }) {
         >
           <div className="h-10 w-10">
             <Image
-              classNameRoot="h-10 w-10"
+              classNameRoot="h-10 w-10 overflow-hidden rounded-xl"
               classNameImage="object-cover rounded-xl"
+              height={0}
+              width={40}
+              fill={false}
               src={product.image}
               alt="Image"
             />

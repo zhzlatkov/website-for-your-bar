@@ -33,10 +33,10 @@ export default function ScrollToTop() {
         onClick={scrollToTop}
         className={
           (isVisible ? "opacity-100" : "opacity-0") +
-          " z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-pirateGold-300 bg-shark-950 font-bold p-3 text-xl text-pirateGold-300 shadow-sm transition-opacity hover:bg-shark-700 focus:outline-none focus:ring focus:ring-shark-500 focus:ring-offset md:h-12 md:w-12 md:text-3xl"
+          " z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-pirateGold-400 bg-shark-950 font-extrabold text-xl text-pirateGold-400 shadow-sm transition-opacity hover:bg-shark-700 focus:outline-none focus:ring focus:ring-shark-500 focus:ring-offset md:h-12 md:w-12 md:text-3xl"
         }
       >
-        ↑
+        <span className="mb-1 sm:mb-2">▲</span>
       </button>
     </div>
   );
