@@ -85,7 +85,7 @@ export default function AdminLayout({ current, children }) {
         (status !== "authenticated" && status !== "loading") ||
         new Date() > new Date(session?.expires)
       ) {
-        await router.push("./login");
+        await router.push("/login");
         return;
       }
       setIsLoading(false);
