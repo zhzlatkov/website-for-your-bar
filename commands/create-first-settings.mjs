@@ -1,5 +1,24 @@
 import prisma from '../services/prismaClient.mjs';
 
+const settings = {
+    name: 'MyBar',
+    logo: 'https://cdn.pixabay.com/photo/2017/09/23/21/21/label-2780146_1280.png',
+    email: 'info@mybar.com',
+    phone: 892461023,
+    homeHeading1: 'BAR & DINNER',
+    homeHeading2: 'Brunch & Burger after 4 p.m.',
+    shortDescription:
+        'Out bar is more than just a place to grab a drink; our bar is a place where people can unwind, socialize, and enjoy themselves! Currently the best cocktail bar in Europe, number 1 one in Germany!',
+    addressStatus: true,
+    address:
+        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23452.460574967714!2d23.255106277246114!3d42.71308800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa9a99f1694635%3A0xda4e8399b858ead7!2sHappy%20Bar%20%26%20Grill%20Lyulin!5e0!3m2!1sbg!2sbg!4v1690653957400!5m2!1sbg!2sbg',
+    statusFunFacts: true,
+    statusJokes: true,
+    jokesImage:
+        'https://img.freepik.com/free-photo/young-crazy-businessman-dancing_1194-9853.jpg?w=740&t=st=1685564918~exp=1685565518~hmac=f19ecb50ede4a2d570a561c2a63834c294cc604cf8e391736af345887b9ef685',
+    statusOrdering: false,
+};
+
 const services = [
     {
         name: 'Private Events',

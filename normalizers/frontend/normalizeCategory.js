@@ -9,7 +9,7 @@ export default function normalizeCategory(category = null) {
     status: category ? Boolean(category.status) : false,
   };
 
-  if (category.products?.length > 0) {
+  if (category?.products?.length > 0) {
     sanitizedCategory.products = category.products.map((product) =>
       normalizeProduct(product)
     );
