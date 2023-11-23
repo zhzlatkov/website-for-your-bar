@@ -8,6 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "prepare": "husky install",
+        "postinstall": "prisma generate",
         "createUser": "node commands/create-new-user.mjs",
         "createFirstSettings": "node commands/create-first-settings.mjs"
     },
