@@ -1,5 +1,6 @@
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import Image from "./Image";
+import AddToCartButton from "./AddToCartButton";
 import Link from "next/link";
 
 export default function ProductComponent({ product }) {
@@ -75,11 +76,14 @@ export default function ProductComponent({ product }) {
               </div>
             </div>
             <div className="mt-4 space-y-6">
-              <p className="text-left text-base indent-4 text-pirateGold-200">
+              <p className="text-left text-base indent-4 text-pirateGold-100">
                 {product.longDescription}
               </p>
             </div>
           </section>
+          <div className="float-right my-8">
+            <AddToCartButton product={product} />
+          </div>
         </div>
       </div>
     </div>

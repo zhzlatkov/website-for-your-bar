@@ -12,7 +12,7 @@ export default function MenuCategory({ category }) {
               <span className="text-base font-semibold leading-7 uppercase shadow-pirateGold-700">
                 {category.name}
               </span>
-              <span className="ml-6 flex h-7 items-center">
+              <span className="my-auto ml-6 flex h-7 items-center">
                 {open ? (
                   <MinusSmallIcon
                     className="h-6 w-6 hover:text-shadow-h3 focus:text-shadow-h3"

@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -6,6 +9,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: "300px",
+      ...defaultTheme.screens,
+    },
     textShadow: {
       default: "1px 1px 1px #efaf03",
       md: "3px 3px 3px #efaf03",
@@ -73,17 +80,5 @@ module.exports = {
       },
     },
   },
-  extend: {
-    typography: {
-      DEFAULT: {
-        css: {
-          ".text-center-last": {
-            textAlignLast: "center",
-          },
-        },
-      },
-    },
-  },
-
   plugins: [require("tailwindcss-textshadow")],
 };

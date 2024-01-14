@@ -29,7 +29,7 @@ export default function CategoryList({ categories }) {
             <h3 className="mt-1 text-lg font-medium text-pirateGold-200">
               {category.name}
             </h3>
-            <p className="mt-4 text-sm text-pirateGold-400">
+            <p className="mt-4 text-sm text-pirateGold-100">
               {category.shortDescription}
             </p>
           </Link>

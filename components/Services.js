@@ -12,15 +12,36 @@ export default function Services({
   shortDescription,
   services,
 }) {
+  function breakeText(text, maxRowLength) {
+    const words = text.split(" ");
+    let rows = [];
+    for (let i = 0; i < words.length; i++) {
+      if (rows.length < 1) {
+        rows.push(words[i]);
+        continue;
+      }
+      const lastRow = rows[rows.length - 1];
+      if (lastRow.length + words[i].length < maxRowLength) {
+        rows[rows.length - 1] = rows[rows.length - 1] + ` ${words[i]}`;
+        continue;
+      }
+      rows.push(words[i]);
+    }
+    return rows;
+  }
+
+  const headingOneRows = breakeText(headingOne, 12);
+  const headingTwoRows = breakeText(headingTwo, 15);
+
   const icons = { faChampagneGlasses, faMartiniGlassCitrus, faIcons };
   return (
     <section className="relative isolate overflow-hidden bg-shark-900 pt-2 pb-4 sm:py-12">
-      <Image
+      {/* <Image
         src="https://cdn.pixabay.com/photo/2015/05/29/19/18/cafe-789635_1280.jpg"
         alt="your bar interior cover photo"
         withContainer={false}
         classNameImage="inset-0 -z-10 h-full w-full object-cover object-right md:object-center opacity-10"
-      />
+      /> */}
       <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
         <div
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-shark-100 to-shark-600 opacity-10"
@@ -41,11 +62,22 @@ export default function Services({
       </div>
       <div className="mx-auto w-11/12 max-w-6xl">
         <section className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl text-shadow-h1 sm:text-6xl">
-            {headingOne}
+          <h2 className="text-3xl my-6 mt-8 sm:my-6 font-bold tracking-tight text-pirateGold-500 text-4xl sm:text-6xl">
+            {headingOneRows.map((row, index) => (
+              <span key={index} className="text-shadow-h1">
+                {row} <br className="sm:hidden" />
+              </span>
+            ))}
           </h2>
-          <h4 className="w-max text-2xl my-2 font-bold underline decoration-pirateGold-500 decoration-8 [text-decoration-skip-ink:none] underline-offset-[-3px] tracking-wide text-pirateGold-100 text-3xl sm:text-4xl shadow-2xl text-shadow-h2 shadow-pirateGold-700">
-            {headingTwo}
+          <h4 className="text-2xl my-2 font-bold underline decoration-pirateGold-500 decoration-8 text-pirateGold-100 text-3xl sm:text-4xl">
+            {headingTwoRows.map((row, index) => (
+              <span
+                key={index}
+                className="[text-decoration-skip-ink:none] underline-offset-[-3px] tracking-wide shadow-2xl text-shadow-h2 shadow-pirateGold-700"
+              >
+                {row} <br className="sm:hidden" />
+              </span>
+            ))}
           </h4>
           <p className="my-6 text-lg leading-8 text-pirateGold-100">
             {shortDescription}

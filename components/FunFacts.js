@@ -50,13 +50,13 @@ export default function FunFacts({ isVisible, funFacts }) {
                 key={`icon_${index}`}
                 icon={icons[index] || icons[0]}
                 size="lg"
-                className="absolute left-1 top-1 h-5 w-5 text-pirateGold-500"
+                className="absolute left-2 top-2 h-5 w-5 text-pirateGold-500"
               />
               {funFact.name}
             </dt>{" "}
             <dd
               key={`description_${index}`}
-              className="text-pirateGold-200 inline"
+              className="text-pirateGold-100 inline"
             >
               {funFact.text}
             </dd>

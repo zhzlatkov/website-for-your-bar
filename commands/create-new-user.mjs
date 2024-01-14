@@ -12,15 +12,18 @@ async function registration() {
             return console.error('Please fill in all required information.');
         }
 
-        const response = await fetch('http://localhost:3000/api/registration', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, password }),
-        });
+        const response = await fetch(
+            'https://website-for-bars.vercel.app/api/registration',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password }),
+            }
+        );
 
-        if (response.statusCode !== 200) {
+        if (response.status !== 200) {
             return console.error(response.statusText);
         }
 

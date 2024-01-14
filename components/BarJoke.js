@@ -48,14 +48,14 @@ export default function BarJoke({ isVisible, jokes, image }) {
                 />
                 <use href="#b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb" x={86} />
               </svg>
-              <blockquote className="text-base leading-8 text-pirateGold-300 sm:text-2xl sm:leading-9">
+              <blockquote className="text-base leading-8 text-pirateGold-100 sm:text-2xl sm:leading-9">
                 <p>{jokes[randomIndex].text}</p>
               </blockquote>
               <figcaption className="mt-8 text-base">
                 <div className="capitalize font-semibold text-pirateGold-500">
                   {jokes[randomIndex].author}
                 </div>
-                <div className=" capitalize mt-1 text-pirateGold-200">
+                <div className=" capitalize mt-1 text-pirateGold-100">
                   {jokes[randomIndex].place}
                 </div>
               </figcaption>

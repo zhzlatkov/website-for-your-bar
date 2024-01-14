@@ -10,7 +10,7 @@ export default function Address({ isVisible, address }) {
       <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-pirateGold-200 text-shadow-h3 sm:text-4xl">
         We Are Here!
       </h2>
-      <p className="mx-auto mt-2 max-w-xl text-base sm:text-lg leading-8 text-pirateGold-400">
+      <p className="mx-auto mt-2 max-w-xl text-base sm:text-lg leading-8 text-pirateGold-100">
         If for some reasone you forget where do you live, at least you will know
         home to come back to the bar.
       </p>
