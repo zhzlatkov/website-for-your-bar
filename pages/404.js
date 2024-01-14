@@ -17,13 +17,31 @@ export default function Error404({ settings, socialMedias }) {
           <p className="mt-4 text-center text-base text-shark-100/70 sm:mt-6">
             Sorry, we couldn’t find the page you’re looking for.
           </p>
-          <div className="mt-10 flex justify-center">
-            <a
-              href="./"
-              className="text-sm font-semibold leading-7 text-shark-100 border-pirateGold-200 border-2 rounded-sm px-4 py-1 shadow-md shadow-pirateGold-200/40"
-            >
-              <span aria-hidden="true">&larr;</span> Back to home
-            </a>
+          <div className="flex justify-around m-auto">
+            <div className="mt-10 flex justify-center">
+              <a
+                href="./"
+                className="text-sm font-semibold leading-7 text-shark-100 border-pirateGold-200 border-2 rounded-sm px-4 py-1 shadow-md shadow-pirateGold-200/40"
+              >
+                Back to home
+              </a>
+            </div>
+            <div className="mt-10 flex justify-center">
+              <a
+                href="./menu"
+                className="text-sm font-semibold leading-7 text-shark-100 border-pirateGold-200 border-2 rounded-sm px-4 py-1 shadow-md shadow-pirateGold-200/40"
+              >
+                Find something to drink
+              </a>
+            </div>
+            <div className="mt-10 flex justify-center">
+              <a
+                href="./contacts"
+                className="text-sm font-semibold leading-7 text-shark-100 border-pirateGold-200 border-2 rounded-sm px-4 py-1 shadow-md shadow-pirateGold-200/40"
+              >
+                Contact us
+              </a>
+            </div>
           </div>
           <Image
             src="https://cdn.pixabay.com/photo/2014/08/26/20/08/man-428392_1280.jpg"
